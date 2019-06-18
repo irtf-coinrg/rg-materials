@@ -1,0 +1,188 @@
+COINRG - https://irtf.org/coinrg
+Thursday 28 March 2019
+IETF 104 - Prague
+Chairs: Jianfei (Jeffrey) He, Marie-José Montpetit, Eve M. Schooler
+Meeting materials: https://datatracker.ietf.org/rg/coinrg/meetings/
+-----
+
+Chair Slides: https://datatracker.ietf.org/meeting/104/materials/slides-104-coinrg-chair-slides-04
+============
+
+Intro – Marie-José Montpetit
+-----
+
+This is the first meeting as a proposed research group.  Introduce chairs.  
+Information on Wiki, mailing list, remote participants and agenda bashing.
+
+
+Goal, focus, charter discussion - Jeffrey He/Eve Schooler
+-------------------------------
+
+Jeffrey He:
+
+We want to foster research in computing in the network to improve performance for the network and applications.  Architectures, protocols, use cases.  For the detailed charter, see the wiki https://trac.ietf.org/trac/irtf/wiki/coin.
+
+Objective is to look systematically at different instantiations of COIN in the cloud-to-edge-to-device computing continuum.
+
+Eve Schooler:
+
+There's a continuum from the cloud to the edge, rather than these being distinct devices/environments.
+
+Many applications need a more proximate cloud, which has led to a proliferation of edges.  
+In the extreme, everything is an edge, or cloud, or data center.
+
+Not every edge is going to support the full suite of functionality of a back-end cloud data center.  Therefore, the cloud is becoming decentralized and distributed, but also disaggregated.
+
+Depending on where it is placed, compute can look categorically different. The computational problems can focus on: algorithms for key-value stores, consensus, packet inspection, acceleration, crypto, high definition map updates. 
+Aggregator nodes may need to perform compute to reduce resource usage and/or manage data implosion.
+
+There are many places to put compute in the network, from cloud to edge to device.  Some places are stationary, some mobile.
+
+Where in the architectural stack will compute (need to) be performed?  Regardless, the network will need to partner with storage (to support the i/o for compute). And developers/users don't want to be bothered with having to know the
+Specifics of where exactly COIN will run.  
+
+Goals of today's presentations - Marie-José Montpetit
+------------------------------
+
+Explore the continuum and state of the art, define potential PRG topics, identify what is needed, help to form opinions on PRG scope, identify potential drafts and bring contributors together.
+
+
+Keyword-based Naming for In-Network Computing - Borje Ohlman
+=============================================
+Slides: https://datatracker.ietf.org/meeting/104/materials/slides-104-coinrg-a-keyword-based-naming-for-in-network-computing-00
+
+A Keyword-based UCN-IoT Platform (ACM ICN 2017).  ICN offers a unified treatment of bandwidth and storage resources. Enhance caches with data repositories, leads to adding processing to the mix of storage and delivery.  Vision is a
+store-process-deliver process for edges of network.  Results should be reusable.
+
+Naming approaches: hierarchical naming, tag-based naming, naming things with hashes (RFC 6920), combining tag-based
+and hash-based.
+
+Deeper dive into keyword-based name structure (see presentation).
+
+Advantages: the network can implement different planning/scheduling mechanisms suitable for each request,
+and both input data and results can be reused.
+
+
+Industrial networks use case - Klaus Wehrle
+============================
+Slides: https://datatracker.ietf.org/meeting/104/materials/slides-104-coinrg-industrial-networks-00
+
+
+Industry 4.0: a lot of robots doing smart manufacturing, connected by real-time deterministic Ethernet.  Edge cloud, remote cloud.  Networked control: Control loops requiring ultra low latency.  Collect and process data: high data rate, stream processing, immediate feedback.  Offline data analysis: model extraction, etc.
+
+Network control loops: remote cloud not feasible, edge cloud still has higher latency, often missing real-time capability.  Push control algorithm to the switch, main control algorithm stays in edge cloud to do delay-insensitive adaptation, cloud updates reflex if necessary.
+
+Theoretical example, balancing an inverted pendulum. Real-world examples: arc welding robots, mobile robot cooperation, collection and analysis of process data, data stream processing at line rate.
+
+Proposed framework: in-network processing for simple tasks, hierarchical placement of computational tasks.  Need more
+computational capabilities, configuration and management, transport protocol issues.
+
+Question (Dirk Kutscher): One of the important motivations doing this is deterministic processing, not just low latency.  What is
+your assumption about the protocols and security - is this a control domain that is kept apart from the rest of the
+network?  
+Answer: If you talk with engineers, etc. they don't care about security, but when it leaves their premise they are extremely careful.  It would be a nice play for IP to move into industrial networks.  Definitely I would consider security an important issue.
+
+Question (Phillip Eardley): What about end-to-end?  
+Answer: if you have manipulation in the network, that breaks the end-to-end principle.  If the data goes into the cloud and there is some processing in the switch, that breaks the end-to-end principle.
+
+Question (Dave Oran): Detnet-like processing: does processing in the switch need to be included in scheduling, need synchronous clocking, how about the programming complexity, and reducing the traffic?  
+Answer: Yes - I do not always assume synchronous communication but these control algorithms are able to adapt to various latencies (but the lower the better).  In some use cases, we reduce the traffic.That is not real-time critical, but about bandwidth. 
+
+Question (Will Liu): On your last two slides, I notice you mentioned a possible architecture and I'm curious because I participated in last year's side meeting.  Do you mean that there will be a sort-of standardized south-bound interface between
+computing function and switches?  
+Answer: We push computation function into the switch - there is no south-bound/north bound interfaces between functions and switch.  These are interesting questions which I address with this configuration architecture, south-bound/north-bound interfaces may be used.
+
+Question (Emile Stephan):  Is Turing-completeness a feature?  
+Answer: We wrote a simple EPPF verifier, which needed to be very small.  We can have a program that has loops but which does not run infinitely. To have Turing-complete execution environments would be nice but operators have different ideas about that.
+
+Edge and IoT - Matthias Kovatsch
+============
+Slides: https://datatracker.ietf.org/meeting/104/materials/slides-104-coinrg-edge-and-iot-00
+
+Refresher on T2TRG Edge discussions at IETF.  
+
+Question: is T2TRG the right research group?  
+Answer: possibly with regard to the distributed and light-weight aspects of some challenges.  
+
+Question: Does T2TRG have enough interested people to work on IoT edge
+computing?  
+Answer: yes.  
+
+Question: what is our relationship to COINRG?
+Answer: Move edge computing discussion there (no, as we identified enough interest), perhaps provide thing-centric input from T2TRG. 
+
+Question:  How is BEC (Beyond Edge Computing) related? [Discussion at IETF 102] 
+Answer:  Something we could discuss later.
+
+Discussion examples: supporting services (compute, storage, discovery).  What are natural edge nodes?  Need to focus on
+application domains. Is virtualization in scope?
+
+Next steps: is there interest in a liaison between coinrg and t2trg?  How to coordinate?  Ideas for first work items?
+
+Comment (Marie-Jose Montpetit): We should take these questions to the mailing lists (T2T and COINRG)
+
+
+Computing Service Provider - Noa Zilberman
+==========================
+Slides: https://datatracker.ietf.org/meeting/104/materials/slides-104-coinrg-computing-service-providers-01
+
+Can ISPs become CSPs (Computing Service Providers)?  The performance gap between networking and computing is growing.  While computing performance has hit a wall, it still has improved by an order of magnitude over a decade, but networking devices have grown capacity much more quickly.  The reason for this gap is due to the architectural difference between devices.  CPUs move instructions through the pipeline, with a bus width of 64 bits.  Switches are moving data through the pipeline, with a bus width of 256 bytes or more, and keep growing this width.
+
+To bridge the performance gap, create a tiny terabit data centre: pull all data centre components into a single computer with a network fabric device at its core.  Other components are peripherals. Optimize for high data rates.
+
+In-network computing: execution of native host applications within the network using standard network devices, such as NICs and switches.  
+Potential benefits include that every op done in the network frees CPU cycles, superior application
+throughput, significant latency reduction, the cost is almost zero (as these devices are already deployed within the network), and significant power savings.
+
+Computing as an infrastructure: infrastructure is deployed at varying scales and for varying needs.  Computing becomes akin to infrastructure.  Computing today has the user going straight to the data center.  Emerging architecture has user
+going to the edge.  Scaling computing infrastructure: local compute to edge compute to aggregated compute to data centre.  
+Unified communication and computing infrastructure: local and edge compute can be located in switch-based computers, a combination of in-network computing and tiny-terabit data centres.
+
+Benefits include terminating data at the edge before it gets to the data centre.  Reduce complexity at every stage, increase scalability and longevity, reduce power consumption, improve privacy and data control.
+
+Scaling computing infrastructure:  cloud providers have incentive to move computing closer to users.  Rethinking the
+application deployment model, gives us right to choose our provider, to choose our apps pack.
+
+Taking back control of data: users choose compute service provider, privacy and data control as a service, competitive
+market, and improved resilience.
+
+Can new types of computing entities emerge?
+
+Note that this presentation is based on the following publications:
+(1) Noa Zilberman, Andrew W. Moore, Jon A. Crowcroft, "From Photons to Big Data Applications: Terminating Terabits", Royal Society Philosophical Transactions A, A vol.374, issue 2062, 2016.                 https://www.cl.cam.ac.uk/~nz247/publications/zilberman2016terminating.pdf
+(2) Noa Zilberman, "Revolutionising Computing Infrastructure For Citizen Empowerment", Data for Policy Conference, London UK, September 2017.
+    https://www.cl.cam.ac.uk/~nz247/publications/zilberman2017revolutionising.pdf
+(3) Yuta Tokusashi, Huynh Tu Dang, Fernando Pedone, Robert Soulé and Noa Zilberman, “The Case For In Network Computing On Demand”, Eurosys 2019 
+    https://www.cl.cam.ac.uk/~nz247/publications/tokusashi2019ondemand.pdf
+
+
+Comment (Marie-José Montpetit): Questions about this presentation can be combined with open discussion
+
+Question (Haoyu Song): I may have misunderstood the meaning of "compute in network."  My thoughts were close to what last presenter showed.  Others used network in conventional ways.  I may lack some clarification.  
+Answer (Marie-José Montpetit): I will return the question to you - what would you like it to be?  
+Answer and further question  (Haoyu Song): I would like to do some forwarding-related and non-networking functions in devices.  
+Answer (Marie-José Montpetit): basically, it is what we are describing and Noa's presentation and industrial
+networking are also what you're describing.  
+Answer (Haoyu Song): In that sense the term may be edge computing.  
+Answer (Marie-José Montpetit): it's not just the edge.  We want to connect everything.
+
+Question (Dirk Kutscher):  scoping is clearly the challenge here. There is already a lot of computing in the network, so we should be quite clear that this rg is not about what already exists.  Perhaps it's also useful to think about what would be out of scope.  
+Second, this work that was presented is very interesting but I worry that we are introducing ISDN for network computing.  
+What could be attractive would be to think about what computing in the network has to do with internet protocols.  
+Answer (Eve Schooler): Yes, we typically live at layer 3 and what kind of protocols and ecosystem does IETF bring to the discussion.
+
+Question (Colin Perkins relaying from Jabber room): There was a question: how can we choose apps from providers who don't support it?
+Answer (Noa Zilberman): the idea is to focus on providers who do.  You can always go back to the model we use today.  As someone who cares about privacy I care about which data centre is guarding the data.  I already see benefits for the user that go beyond performance.
+
+Question (Erik Nordmark):  some thoughts - this is a very large space. One thing that you might want to consider: what is new here, and what is changing?  
+Answer (Eve Schooler): Yes, and one of the next steps is programmability.  What's the ecosystem that lives around it.
+
+Comment (Nicolas???): One very interesting thing here is the computational economics of it.  That's the same problem with edge - you don't know if it's valuable.
+
+Final comment (Marie-José Montpetit): potential virtual interim ahead of Montreal; meet at IETF 105 in Montreal.
+
+Edge data discovery - Eve Schooler – [Not presented due to lack of time]
+===================
+Slides: https://datatracker.ietf.org/meeting/104/materials/slides-104-coinrg-edge-data-discovery-00
+
+ 
