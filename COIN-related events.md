@@ -11,5 +11,6 @@
 - [ICN2020:7th ACM Conference on Information-Centric Networking](http://conferences.sigcomm.org/acm-icn/2020/) - Sept. 28-30 Montreal
 
 - AINTEC - South East Asian Networking Conference with a focus this year on in-network computing for local networking - November 2020 - Bangkok (after IETF109) (no website yet)
-ICIN 2021(date TBD)
+
+- ICIN 2021(date TBD)
 
