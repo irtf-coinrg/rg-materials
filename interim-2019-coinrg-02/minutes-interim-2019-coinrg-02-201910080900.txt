@@ -1,0 +1,391 @@
+
+Minutes
+
+Meeting Recording at: https://ietf.webex.com/recordingservice/sites/ietf/recording/playback/895d01c2a33b4d35b7ede03a898ce5bb
+
+Intro and Administrivia
+
+Marie-Jose: Thank you to those getting up early and those staying up late to join us today
+
+This is an interim meeting of the Proposed RG COIN  - Computing in the Network
+
+With a focus on the Edge-Cloud continuum
+
+We feel lucky that the topic is cropping up at many conferences and in many academic venues.
+
+The COINRG is moving from using Github as our supplemental meeting space to using the Wiki
+
+One of the reasons for GitHub is the ability to store large files, such as this recorded meeting
+
+
+PRG Status
+
+Charter – pretty stable and no change is planned before next meeting IETF 106
+
+Chartering IAB breakfast meeting Mon Nov 18th to discuss COIN RG
+
+Will need to be careful defining milestones and achieving them
+
+At present, most milestones proposed have related Internet Drafts that have been submitted – see meeting slide 6 for details
+
+ 
+
+Dec 2019
+
+-          New topics to be included
+
+-          Articulate COIN challenges – I-D on this topic likely to be updated
+
+-          Capture the SoTA of the COIN landscape – to include H2020
+
+April 2020
+
+-          Target COIN case studies, from architecture, implementation and use case standpoints
+
+-          Identify CION network-related eco-system dependencies
+
+-          Discuss/catalog COIN requirements and implications for network elements (including network services, network SW stacks, network HW design, etc)
+
+Nov 2020
+
+-          Work toward defining a COIN scope appropriate for the IRTF, within which new architectures, mechanisms and protocols can be proposed
+
+ 
+
+To advance to an official RG, we want to show that it is not just the co-chairs doing the work and that there is genuine interest on the eco-system and architecture sides as well
+
+-          Industrial use case is thriving
+
+-          For the XR draft, UCLA are interested to help MIT to evolve this draft
+
+-          Would like to help Noa (and other academics) get more involved in the RG, despite the lack of cycles to write drafts
+
+ 
+
+There is another dimension to this work we are trying to achieve in the Hackathon
+
+-          How to define the programmable data plane  
+
+-          P4 is one way to go, but it is certainly not the only way to do programmability in the network
+
+-          Let’s also revisit the possibility to have a common project for the group and there are a bunch of sub-projects or sub-pieces that could fold into it
+
+-          Would like feedback today and ongoing on the list
+
+ 
+
+Meeting at IETF 106
+
+-          Requested a time slot
+
+-          May be first meeting as an official RG
+
+-          Deadlines 
+
+o   New I-Ds: 2019-11-04
+
+o   Agendas: 2019-11-06 – aiming to get in early due
+
+-          Agenda items welcome and please review/update your drafts
+
+-          Beware that the I-D submission tool is not as friendly as one would hope – get a good html editor
+
+ 
+
+Hackathon@106
+
+-          Sat and Sun 11/16-11/17
+
+-          Develop further the data filtering work started in Montreal that has value in industrial networks and video distribution
+
+o   Basically, based on the identity/attributes of the packet, “do something”
+
+o   In industrial nets, the identification of packets is similar to stuff done in autonomous vehicles
+
+o   Be able to tell which packets represent an alarm, or the status of a machine, etc, then want to be able to filter the packet early in the chain of processing
+
+o   In video distribution, the filter can actually be based on the kind of video, destination, type of content the video carries, as described in the XR I-D
+
+o   Not just video filtering but anomaly- or event-driven data filtering, as presented at the COIN BoF re the Ubiquitous Witness use case, which focuses on video analytics for anomalous events (e.g., an accident at an intersection)
+
+o   Classification of packets – accumulation of packets in the right places, and actions for training data  
+
+-          At the moment, the language used so far for the 1st COIN hackathon is P4
+
+o   Thus, it would be good to continue the follow-up and develop data filtering with P4, perhaps to seed a larger project
+
+o   Once we have basic P4 libraries we can ask what else we want to do
+
+o   Post Singapore – let’s discuss an ongoing dev effort, where we continue to build out libraries  
+
+§  NoviFlow, Kaloom, Barefoot acquisition, other devs beyond those who participated
+
+§  Open source set of libraries
+
+-          Helpers welcome/needed!
+
+o   Unlike Montreal, there are currently no plans for developer support during the Hackathon
+
+o   Marie-Jose’s students will come
+
+o   Helpers are welcome, especially those working on P4, even if not P4 expert, even if just doing this kind of programming in another language
+
+o   Not going to do P4 necessarily
+
+o   There are benefits to hanging out with other COIN RG folks at the hackathons and in letting the IETF feed you J
+
+ 
+
+Documents Update
+
+-          Expect Jorg and Dirk to update their Challenges I-D
+
+-          Dirk Trossen and team still working on and intend to update their draft
+
+-          Jeffrey expects to update draft and slides on DC – likely some new use cases
+
+-          Eve expects to update Edge Data Discovery, particularly lead a discussion on the mailing list re expanding the I-D to cover Data lifecycle
+
+-          New Virtualization draft on the horizon
+
+-          Will talk to the team in Chicago to talk about video
+
+-          Also Noa Zilberman – hard for people at universities to write I-D, not just due to lack of cycles, but also lack of academic credit for I-Ds
+
+-          Marie Jose has the intention to see the RG to help folks get work written up
+
+ 
+
+Colin – IETF is very focused on drafts, but the IRTF doesn’t have to be
+
+IRTF could give air time to any doc, which could be a latest publication
+
+There are a few additional ways RG can have influence
+
+-          Writing down architectures and requirements and drafts with particular use cases and experimental protocols
+
+-          Enabling a forum for people to get together and talk about things
+
+o   Papers presented elsewhere
+
+o   Early draft papers
+
+o   Discussions across pockets of people (industry and academics)
+
+o   Facilitating other work (beyond I-Ds) also useful
+
+-          Can upload all sorts of documents, and as long as a pdf it will be fine
+
+-          Hold an interim when there is a major conference in the area, as a debrief and/or schedule at the same time, e.g., holding ICN RG at ICN ACM  
+
+ 
+
+A lot of conferences to happen at the beginning early 2020 that might influence this group
+
+-          Plan to provide a list of related conferences or projects in Singapore
+
+o   Would allow us to promote them in this group but also this group in those conferences
+
+-          E.g., NETPROC@ICIN2020
+
+o   1st WS on Flexible Net Data Plane Processing
+
+o   https://www.icin-conference.org/netproc-2020/
+
+-          Be aware of what else is going on and cross pollinate with our ideas
+
+ 
+
+New topic
+
+-          Latency by Virtualization – Deferring to Singapore
+
+ 
+
+Open Discussion
+
+Marie-Jose et al
+
+-          COIN RG would really like to help researchers get involved who don’t typically engage with the IETF
+
+-          The mailing list activity would seem to suggest that impact is thru I-D creation, yet that mechanism is not always a good fit for academic researchers
+
+-          Rather getting papers into INFOCOM, SDNI, SIGCOMM are more compelling for academics
+
+-          Yet it is really important to have discussions between IETFers and researchers – use cases, data stewardship, making research real
+
+-          Would really help to come up with other ways to engage
+
+o   e.g., Dagstuhl minutes shared on the mailing list
+
+o   e.g., help researchers disseminate info on the mailing list who would never post directly
+
+ 
+
+Daniel 
+
+-          Agree that not all presentations need to be I-Ds, but rather could give visibility to academic research, which may not even be written up as academic papers yet
+
+-          there is certainly value in drafts that exist and how standard protocols will need to shift
+
+-          it is helpful to see and share pseudo code
+
+-          as it is impossible to follow everything going on, having linkages to other conferences and research papers will be helpful because not even SIGCOMM will have everything – could use the Wiki to help make them visible
+
+ 
+
+Jeffrey
+
+-          Let’s move and maintain the References list from the Wiki to GitHub
+
+-          Track Major papers
+
+-          Host Invited talks
+
+ 
+
+Colin
+
+-          Can view the RG as more of a discussion place for a start
+
+-          Enable getting in as many viewpoints as possible at first
+
+-          Naturally, coalesce around a group of docs worthy to publish
+
+ 
+
+Eve 
+
+-          Aspiration to make COINRG the meeting place for the broader community
+
+-          It will take work
+
+ 
+
+Ike Kunze
+
+-          We may have different definitions of what we mean by Industrial IoT
+
+-          Working on 2 different topics re industrial networks
+
+o   Really big machines, production plants, building cars
+
+o   Whereas we think others might mean large data centers? [Absolutely not says Marie-Jose]
+
+§  Devices are in the plant vs a DC
+
+§  Data filtering
+
+-          Not sure then if there is a common understanding yet
+
+-          A common problem with the Industrial draft so far: we don’t have the implementation or we don’t talk yet about what is really done in industry, because we often find closed source solutions – biggest challenge
+
+o   Cannot present what’s been done already
+
+o   Related to what Noa raised
+
+o   What can we do to help here?
+
+o   How to support/collaborate with real industry innovators
+
+o   Could be a topic for ISRG dinner – because all groups need to face this divide, e.g., between industry and academia
+
+o   Let’s start a trend[à thread?] in COINRG to capture – alongside the Academia challenge stated by Noa - the problem statement, i.e., that it is hard to capture real experiences, problem statements, feedback and best practices from real companies
+
+ 
+
+Threaf.
+
+
+Hannu
+
+-          Q: Hannu was asked, from your industrial research perspective, how do you feel about the direction of COIN RG?
+
+-          Closest standardization paths seem to be 3GPP/SA6 (app level) and SA2 (infrastructure level) and ETSI/MEC and ETSI/NFV, they are going deeply into architecture starting from the mobile network
+
+-          Though we are not looking at standardization just yet
+
+-          Q: Plans to implement any of this? Absolutely. Operators/industries interested in investigating the benefits of processing close to where things happen.
+
+ 
+
+TUM – [listen to audio]
+
+He just said he was from Jorg’s team.
+
+
+ 
+
+Jeffrey
+
+-          Interested in Edge computing and DC
+
+-          I-D mainly focused on DC use case
+
+-          How can COIN can help build database inside DC?
+
+-          Secondly, also have some implementation of a PoC on COIN for AI chaining
+
+-          improvements to transport protocols 
+
+-          Some of the experiences in the DC (re DB management) can be applied to computing use case in context of Edge computing – expect in the near future to explore that topic and those who are interested please contact Jeffrey
+
+ 
+
+Eve update
+
+-          Eve gave an update on the genesis of the Edge Data Discovery I-D and how it relates to COIN
+
+-          Computation needs to marshal input data from somewhere and to place computational output somewhere
+
+-          Had great feedback after -01 and , A lot of drafts that cover more t han one research group, so it would be fine
+
+-          ICN and Compute First Networking – we overlap
+
+-          Could overlap with DIN and other WGs in the IETF
+
+-          Autonomous migration of data
+
+ 
+
+Xavier de Foy
+
+-          What is your interest? Involved with Dirk Trossen (InterDigital) and interested in Edge computing in 5G Networks, related to 3GPP and ETSI/MEC activities
+
+-          IoT and Edge
+
+ 
+
+Dong Lin
+
+-          Actually working with Jeffrey (Huawei)
+
+-          Hoping to contribute to this working[àresearch] group
+
+ 
+
+CoRE WG
+
+-          Carsten Bormann – mostly lurking because in the end, constrained networks particularly constrained node networks are looking for friends to offload to
+
+-          Lots of IoT related issues, could pick up in CoRE and T2T
+
+-          COINRG branched off from T2T and ICN, and a few other things
+
+ 
+
+Action Items
+
+-          Start a thread on the mailing list on how we can help academia to participate, shepherd docs, allow more discussions, supporting smaller group discussions as necessary
+
+-          Start a parallel thread on how we can help industry to participate
+
+-          Look at progressing the GitHub presence, i.e., moving the references there
+
+-          Load references that are part of the Wiki into the Data Tracker
+
+-          Catalog the list of conferences/workshops that are happening in this area
+
+-          If you have a draft, make sure it is updated on time
+
+-          Please send us Agenda items for Singapore – ok to participate remotely and offer ideas for presentations
