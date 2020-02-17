@@ -1,0 +1,289 @@
+Meeting Minutes
+COIN RG @IETF 105, Montreal
+PRG chairs: Jeffrey He, Marie-José Montpetit, Eve M. Schooler
+July 26th, 2019. 1:30-3:30 pm 
+ 
+ 
+1. Administrivia and RG status
+ 
+Chair Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-chairs-slides-05
+ 
+Eve opens the meeting.
+ 
+Jeffrey addresses the updated charter since Prague with minor comments from the interim meeting. , and the upcoming milestones of COIN RG (see https://datatracker.ietf.org/rg/coinrg/about/).
+Comment from Dirk K.: not usual for a proposed RG to have milestones already.
+ 
+MJM introduces the current IDs (see https://datatracker.ietf.org/rg/coinrg/documents/), including 4 new drafts and 3 existing drafts, and gave a brief overview of the hackathon and the lessons learned.
+ 
+PRESENTATIONS: 
+ 
+2. Topic Name: Directions for COIN
+Presenter: Dirk Kutscher
+Draft reference: draft-kutscher-coinrg-dir
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-1-2-kutscher-ott-directions-coin-00
+ 
+Summary:
+-       What does in-network really mean? Exploring numerous (present and future) options in terms of architecture and execution environments.
+-       Some thoughts on computing: code and provisioning, execution, etc.
+-       What could/should COIN look at? Focus moving to the edge.
+ 
+Discussion: 
+Comment from the chair (MJM): Thanks to Dirk K and Jörg for bringing this. Since time is limited, we should leave the further discussion to the mail list.
+ 
+3: Topic Name: Using Service Function Chaining for In-Network Computation
+Presenter: Adrien Wion (Thales/Telecom ParisTech)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-3-wion-service-function-chaining-for--coin-05
+ 
+Summary: Proposal “Augment the IGP and make it function aware”, a distributed framework to chain in-network function
+ 
+Discussion:
+ 
+Q(Jeff Tantsura): BGP would be much easier to implement an inter-domain service provisioning.
+A: OK.
+ 
+Q(Doug Montgomery): Do you have the ability to choose a route based on the overall service chain?
+A: What we have done for now is take a decision based on shortest buffer. Nonetheless if you have the augmented view you can use in my opinion any path computation algorithm to take a more complex decision if needed. And you could also make forceful thing using for instance as SRV6 to do that.
+
+Q (Diego Lopez): how do you control the life cycle associated with the routing?
+A: for now we do not deal with the life cycle, it's static. Qur 1st paper have experimented some load balance scenario, will start another to change for the balance. It is possible to modify the traffic engineering doing that.
+
+Comment(Diego Lopez): You also need to define wow to make the decision to scale out, how this was propagated through the routing updates.
+ 
+4. Topic Name: Industrial Use Cases for In-Network Computing
+Presenter: Ike Kunze (U. Aachen)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-4-kunze-industrial-coin-01
+ 
+Summary: Presented out different types of network and automation functions and open challenges in industrial environment.
+ 
+Discussion:
+Q (MJM - chair hat off): What you are bringing with this architecture is not clear. Suggest to make a differentiation of what is already existing in automated industrial environment in the next version, clearly identify between what is your suggestion and what is currently happening.
+A: Nice suggestion, will think about that.
+
+Q (Jeff Tantsura): Your next step is drafting a transport protocol? Do you mean that is new to existing transport protocol?
+A: There is violation of the internet principles so typically so we don't think that it will work with the existing protocols or at least not out of the box. So the end host somehow have to know that someone in the middle is interfering with what they are doing and this is actually what I meant on the draft of transfer protocol.
+Comment (Jeff Tantsura): sounds like MQP-like protocol.
+ 
+5. Topic Name: Enabling Scalable Edge Video Analytics with Computing-In- Network
+Presenter: Junchen Jiang (University of Chicago)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-5-jiang-video-analytics-and--coin-01
+ 
+Summary: A new approach to bring a periodical re-profiling and adapt the video pipeline to dynamic video content. The implication is that “need tight network-app coupling” for real time video analytics.
+ 
+Discussion:
+Q (Eve): there is Meta data specific to these kinds of cascades?
+A: If you want to leverage the server logic feedback, it is better to have a standardized version of metadata, and generalize feedback would be useful. This is early stage of research, it makes some assumption on what the video will look like. Let the server see something, if it is not usual, the server will ask for more info. The other thing, confidence as in this neural network usually have some scores attached to each detection, which was useful info for neural network.
+
+Q (Emile Stephan): Will the bitrate be changing a lot or pretty stable?
+A: It’s content dependent. Not at a scale of 2 magnitude, it’s usually within one magnitude. Neural network assume certain input size. It will resize smaller, not full scale. If you have this number of layers, how to lay out /spread across the layers? Good question for this RG.
+
+Q (Dave O.): How much time is there between the bottom and the peak? 10 ms? How many RTTs do I have before I see the spike?
+A: Sub-seconds, it do need several iterations to catch the spike.
+Q (Dave O.): Given the edge resource are constrained, not just in compute but also memory. Can I buffer enough of this peak to keep the data long enough to get the resource? (memory bottleneck )
+Further Q (Dave O.): Do you need the model everywhere so you can get the model in right space.
+A: The cameras usually have pretty large storage and buffering.
+Q (Sharon B.):  How urgent is it to understand what the camera sees? I think it’s really urgent that the neural network to be on the camera.
+A: Yes, there’re 2 extreme cases. A self-driving car with lots of resource, everything must be super real-time. We want everything local, versus have a bunch of surveillance cameras, much cheaper than you have on self-driving car, you need to have a networked system to analyze the data. They’re assumed not as urgent as self-driving car. Hierarchy delay between camera with neural network, the edge, and the cloud.
+
+Comment from Sharon B. (by email):
+The point was that between very heavy video processing on CPEs for immediate understanding (AV), or, very heavy HD video streams traffic to PE from millions of cameras for deferred understanding, there are degrees of lighter CPE processing for immediate factoring of key video frames, and low-latency forwarding to PE for deeper-learning and enumeration of what was captured in the geo-spatial (~square meter) cell the camera pointed to at time of the capture. RTT should minimize the delta in the physical world state between capture and understanding, controlling for both CPE and PE costs. Will be happy to further elaborate next coinrg session on a draft standard outlying such interoperable pub-sub annotation pipeline CPE-PE-CPE of geo-state enumerations in low-latency verification and privacy-protected propagation. draft is progressed in lispwg. https://tools.ietf.org/html/draft-barkai-lisp-nexagon-05
+ 
+6. Topic Name: Evolution from OpenFlow to P4
+Presenter: Jesper Noviflow (remote)
+Slides: https://datatracker.ietf.org/doc/slides-105-coinrg-6-eriksson-sdn-evolution/
+ 
+Summary: introduces Openflow match-action pipeline and P4 runtime match-action pipeline and makes also a comparison of them.
+ 
+Discussion:
+Q (Dave Oran): What if 2 programmers have written P4 program, they don’t know about each other, what is the composition model for composing two P4 programs into one? What’s the model for how those 2 programs can be loaded into the same switch? And what’s the model if I want to change the program of the switch without resetting the switch?
+A: I don’t have the answers right now.
+Comment (MJM): We can take the question to the list.
+ 
+7. Topic Name: In-Network Computing for App-Centric Micro- Services 
+Presenter: Dirk Trossen (InterDigital)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-7-trossen--coin-appcentres-01
+Draft: https://tools.ietf.org/html/draft-sarathchandra-coin-appcentres-00 
+ 
+Summary: introduces the use case of App-Centric service, and the enabling techs (application packaging, service deployment, service routing, service pinning, and state sync.)
+ 
+Discussion:
+Q (Dirk Kutscher): for the service chaining implementation what are the information units those functions actually operate on a terminating some application protocol?
+
+A: In the draft we assume service function chaining to extend service function chain (which we saw in the presentation) to the entire name base so you issue a URL based requests (rather than an IP based request) and service function chain as well, as presented in the service function chaining; it's always associated with some form of control. We don't use another manner for control. Our service function chaining is defined in the application (see the application design): you specify that micro chain of RPD, we are also looking at the frameworks that automates that and therefore essentially construct an actual name service chain which is then translated and added to the name service function.
+
+Q (Dirk Kutscher): What are receiving and sending? Is it a flow of packets or how does it work?
+
+A: The draft at the moment outlines the packet is the actual HTTP request so it's not IP packet. And HTTP is an example for a named extension.
+
+ 
+8. Topic Name: Requirements of computing in the network
+Presenter: Liu Peng (China Mobile)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-8-liu-coin-requirements-02
+ 
+Summary: Presented several requirements on computing and network convergence (deterministic network capability, computing aware scheduling, function based addressing, network programmability)
+ 
+Discussion:
+Comment (Dave O.): This is a little bit historical. The original stack of IS-IS, had a per node cost, a traversing which was called hippity cost, maybe time to bring that back.
+ 
+Next steps:
+Before Singapore IETF 106, a virtual interim will happen in early Oct, discussion will include the last version of charter and preparation for Singapore (hackathon and meeting).
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+发件人: Hejianfei (Jeffrey) 
+发送时间: 2019年8月2日 7:55
+收件人: Chenlijuan (Rachel) <chenlijuan5@huawei.com>
+主题: FW: Minutes (very draft)
+
+ 
+
+你今天是否有时间看一下下面的coin视频，在， 附件 版本的基础上，补充一下minutes，然后发给mj, 她明天必须发出来。
+https://www.youtube.com/watch?v=mL4NQpr93bc
+bulesheets也已上载，可以查一下人名。
+
+--------------------------------------------------
+何健飞 Hejianfei
+Mobile: +86-18902489100(优先)
+Email: jeffrey.he@huawei.com
+
+发件人：Marie-Jose Montpetit <marie@mjmontpetit.com>
+
+收件人：Schooler, Eve M <eve.m.schooler@intel.com>;Hejianfei (Jeffrey) <jeffrey.he@huawei.com>
+
+时间：2019-07-29 23:42:14
+
+主 题：Minutes (very draft)
+
+ 
+
+It turns out that my clinic has excellent WIFI :)
+ 
+Minutes in email and textedit. I will have to listen to the recording to finish.
+ 
+Talk to you in a few hours.
+ 
+mjm
+ 
+_____________________________________________________________________
+ 
+Meeting Minutes
+COIN RG @IETF 105, Montreal
+PRG chairs: Jeffrey He, Marie-José Montpetit, Eve M. Schooler
+July 26th, 2019. 1:30-3:30 pm 
+ 
+ 
+1. Administrivia and RG status
+ 
+Chair Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-chairs-slides-05
+ 
+Eve opens the meeting.
+ 
+Jeffrey addresses the updated charter since Prague with minor comments from the interim meeting. , and the upcoming milestones of COIN RG (see https://datatracker.ietf.org/rg/coinrg/about/).
+Comment from Dirk K.: not usual for a proposed RG to have milestones already.
+ 
+MJM introduces the current IDs (see https://datatracker.ietf.org/rg/coinrg/documents/), including 4 new drafts and 3 existing drafts, and gave a brief overview of the hackathon and the lessons learned.
+ 
+PRESENTATIONS: 
+ 
+2. Topic Name: Directions for COIN
+Presenter: Dirk Kutscher
+Draft reference: draft-kutscher-coinrg-dir
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-1-2-kutscher-ott-directions-coin-00
+ 
+Summary:
+-       What does in-network really mean? Exploring numerous (present and future) options in terms of architecture and execution environments.
+-       Some thoughts on computing: code and provisioning, execution, etc.
+-       What could/should COIN look at? Focus moving to the edge.
+ 
+Discussion: 
+Comment from the chair (MJM): Thanks to Dirk K and Jörg for bringing this. Since time’s limited, leave the further discussion to the mail list.
+ 
+3: Topic Name: Using Service Function Chaining for In-Network Computation
+Presenter: Adrien WION (Thales/Telecom ParisTech)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-3-wion-service-function-chaining-for--coin-05
+ 
+Summary: Proposal “Augment the IGP and make it function aware”, a distributed framework to chain in-network function
+ 
+Discussion:
+ 
+Q(Jeff Tantsura): BGP would be much easier to implement an inter-domain service provisioning.
+A: <to add>
+ 
+Q(?): Do you have the ability to choose a route based on the overall service chain?
+A; <to add>
+ 
+Q (Diego Lopez): how do you balance the life cycle of routing?
+A: Qur 1st paper have load balance scenario, will start another to change for the balance.
+ 
+ 
+4. Topic Name: Industrial Use Cases for In-Network Computing
+Presenter: Ike Kunze (U. Aachen)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-4-kunze-industrial-coin-01
+ 
+Summary: Presented out different types of network and automation functions and open challenges in industrial environment.
+ 
+Discussion:
+Q (MJM - chair hat off): What you are bringing with this architecture is not clear. Suggest to make a differentiation of what is already existing in automated industrial environment in the next version, clearly identify between what is your suggestion and what is currently happening.
+Q (Jeff ??): Your next step is drafting a transport protocol? Do you mean that is new to existing transport protocola?
+A: Existing protocols don’t work, this is actually what I want to do next in the draft. (note: check the answer)
+ 
+5. Topic Name: Enabling Scalable Edge Video Analytics with Computing-In- Network
+Presenter: Junchen Jiang (University of Chicago)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-5-jiang-video-analytics-and--coin-01
+ 
+Summary: A new approach to bring a periodical re-profiling and adapt the video pipeline to dynamic video content. The implication is that “need tight network-app coupling” for real time video analytics.
+ 
+Discussion:
+Q (Eve): there is Meta data specific to these kinds of cascades?
+A:J If you want to leverage the server logic feedback, it is better to have a standardized version of metadata, and generalize feedback would be useful. This is early stage of research, it makes some assumption on what the video will look like. Let the server see ???, if it is not usual, the server will ask for more info. The other thing, confidence is useful info for neural network.
+Q (?): Will the bitrate be changing a lot or pretty stable?
+A: It’s content dependent. Not at a scale of 2 magnitude, it’s usually within one magnitude. Neural network assume certain input size. It will resize smaller, not full scale. If you have this number of layers, how to lay out /spread across the layers? Good question for this RG.
+Q (Dave O.): How much time is there between the bottom and the peak? 10 ms? How many RTT do I have before I see the spike?
+A: Sub-seconds, it do need several iterations to catch the spike.
+Q (Dave O.): Given the edge resource are constrained, not just in compute but also memory. Can I buffer enough of this peak to keep the data long enough to get the resource? (memory bottleneck )
+Further Q (Dave O.): Do you need the model everywhere so you can get the model in right space.
+A: The cameras usually have pretty large storage and buffering.
+Q (Sharon B.):  How urgent is it to understand what the camera sees? I think it’s really urgent that the neural network to be on the camera.
+A: Yes, there’re 2 extreme cases. A self-driving car with lots of resource, everything must be super real-time. We want everything local, versus have a bunch of surveillance cameras, much cheaper than you have on self-driving car, you need to have a networked system to analyze the data. They’re assumed not as urgent as self-driving car. Hierarchy delay between camera with neural network, the edge, and the cloud.
+Further comment from Sharon B (via email):
+The point was that between very heavy video processing on CPEs for immediate understanding (AV), or, very heavy HD video streams traffic to PE from millions of cameras for deferred understanding, there are degrees of lighter CPE processing for immediate factoring of key video frames, and low-latency forwarding to PE for deeper-learning and enumeration of what was captured in the geo-spatial (~square meter) cell the camera pointed to at time of the capture. RTT should minimize the delta in the physical world state between capture and understanding, controlling for both CPE and PE costs. Will be happy to further elaborate next coinrg session on a draft standard outlying such interoperable pub-sub annotation pipeline CPE-PE-CPE of geo-state enumerations in low-latency verification and privacy-protected propagation. draft is progressed in lispwg.https://tools.ietf.org/html/draft-barkai-lisp-nexagon-05
+ 
+6. Topic Name: Evolution from OpenFlow to P4
+Presenter: Jesper Noviflow (remote)
+Slides: to be uploaded
+ 
+Summary: introduces Openflow match-action pipeline and P4 runtime match-action pipeline and makes also a comparison of them.
+ 
+Discussion:
+Q (Dave Oran): What if 2 programmers have written P4 program, they don’t know about each other, what is the composition model for composing two P4 programs into one? What’s the model for how those 2 programs can be loaded into the same switch? And what’s the model if I want to change the program of the switch without resetting the switch?
+A: I don’t have the answers right now.
+Comment (MJM): We can take the question to the list.
+ 
+7. Topic Name: In-Network Computing for App-Centric Micro- Services 
+Presenter: Dirk Trossen (InterDigital)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-7-trossen--coin-appcentres-01
+Draft: https://tools.ietf.org/html/draft-sarathchandra-coin-appcentres-00 
+ 
+Summary: introduces the use case of App-Centric service, and the enabling techs (application packaging, service deployment, service routing, service pinning, and state sync.)
+ 
+Discussion: none
+ 
+8. Topic Name: Requirements of computing in the network
+Presenter: Liu Peng (China Mobile)
+Slides: https://datatracker.ietf.org/meeting/105/materials/slides-105-coinrg-8-liu-coin-requirements-02
+ 
+Summary: Presented several requirements on computing and network convergence(deterministic network capability, computing aware scheduling, function based addressing, network programmability)
+ 
+Discussion:
+Comment (Dave O.): This is a little bit historical. The original stack of IS-IS, had a per node cost, a traversing which was called hippity cost, maybe time to bring that back.
+ 
+Next steps:
+Before Singapore IETF 106, a virtual interim will happen in early Oct, discussion will include the last version of charter and preparation for Singapore (hackaton and meeting).
+ 
+ 
+ 
