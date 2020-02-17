@@ -1,0 +1,111 @@
+Interim COIN Meeting
+See slides
+
+Agenda
+
+•Review of milestones
+•Drafts update
+•Active
+•Expired 
+•New
+•Potential new work and related meetings/conferences
+•Vancouver Hackaton Preparation
+•Vancouver Meeting
+
+Presentation from MJM 
+
+Lot of activities related to COIN - this meeting is to have a status.
+
+Milestones review
+Review of milestones: new milestones to think about for Vancouver
+3 milestones (see slides)
+
+Focus for Vancouver: discuss/catalog COIN requirements and implications for network elements (including network services, network SW stacks, network HW design, etc.) 
+
+Evolution and new work leading to new milestones? Discussion for Vancouver. 
+Action item for the group: review the milestones and propose new ones if you see fil.
+
+Important to note that the group wants to encourage the presentation of research papers not just drafts to ensure westaty current and can better refine the milestones.
+
+
+Drafts
+
+Edge Discovery has a new version.
+Comment - Eve: largely cosmetic, more substantial changes before the next meeting to respond Dave why focus on edge data discovery, could there be more?
+
+Comment - Ike: we are discussing extending the industrial draft or doing a new one to include intrusion detection.
+
+Directions for Computing in the Network could become a 1st RG draft - to be discussed in Vancouver.
+
+XR should have a revision (work with Alex Afanasyev and Lixia Zhang)
+
+Draft from Dirk Trossen and team - •In-Network Computing for App-Centric Micro-Services
+ expired: what will happen to it now that Dirk has a new position.
+ 
+New work on IoT reference architecture for Agriculture 4.0
+Comment from Alex: just follow up to the presentation in Singapore
+
+Common data layer draft to come with data structures, AI/ML and security etc. - recruiting authors
+Comment - Eve: this is exactly along the line of the comments on the edge discovery - finding the data, finding the computation, dealing with the results - I would like to be part of the conversation - need to coordinate 
+
+Need more work especially on security so other ideas for drafts are welcome.
+
+New work 
+
+Lots of activities in the common data layer, distributed cognition, tactile Internet and other next gen architectures including links to ICNRG, T2TRG and NWCRG.
+
+There are also many related conferences upcoming: ICIN/Netproc, Dagstuhl, ICN2020 etc.
+Action item for everybody: send what are the related meetings, conferences and other activities. A list will be created and maintained on the wiki page and on the github (will be announced to the group when created).
+
+Hackaton
+
+Hackaton great to meet and share with other group not just develop code.
+
+We would like to have a common project using a common architecture and looking at tools evolution.
+
+Presentation and discussion on multi stream processing project (Eve Schooler)
+
+A lot of the content is created at the edge of the network and needs to be sent upstream: implosion problem!
+COIN needed to assess the streams to see if they fit the network or the computer or the memory.
+Relates to the ubiquitous witnesses sending information to their anomaly detectors. What are the functions to be performed at that collection point?
+From the programmable side: we need match actions not just from a single flow but also from many flows to see if they are contextually related.
+(See Eve slide)
+
+Question - Dave Oran:  who is “me” when a decision is needed?
+Answer: it is from the perspective of the switch. These are match-action functions that need to be installed so the me is whoever installed those functions like an operator because what is offered is a service and which flows could use contextual compression to remove redundant information.
+Need to look into the packet beyond the packet header. Need to verify if that can be done with P4 and the switch and/or if there is interest in this type of project.
+
+Comments/observations - Dave Oran:  
+1. some things are convenient to do with the data flow model which you do in a switch and some are not. Look back at the 50 years of experience on data flow management.
+2. look at what physicists have to do for particle detection in accelerators (much higher rate) as they throw away more than 99.9% of the data - there could be some learnings there
+Comment - Eve: there are some great points there - while the image is switch/P4 as related to the previous hackatons there are other implications beyond the software and impact the design of the entities living at the aggregation points.
+Comment - Dave Oran: P4 is more powerful than what is available in switches - may need to start with the hardware not the programming language.
+Comment - Eve: we need to identify “what can’t the hardware do?” Some of the COIN implications are absolutely hardware based and may lead to new architectures.
+Comment- Dave Oran: we should not start from what the hardware can do but what can our architectures and protocols can do for COIN.
+Comment - Eve: MPEG-I has a data descriptor for scenes which relates to what is happening inside the T2TRG in the WISHI work and other groups like the W3C to come up with data models on how you represent data, objects.
+How about defining a hackaton project around such a match/action project?
+Comment - MJM: what was done in Singapore is a first step in that direction but for a single stream. The code exists. The anomaly detector has to deal with a lot of data also in agriculture. COIN across contextually related data flows in also important. 
+Comment - Alessandro Bassi: the approach is applicable to any industrial or transportation use case so is very interesting.
+Comment - Dave Oran:  Nick McKiown talk at Hotnets: server are starting to have the same problems as switches as if you look at the data above rates of 40 Gbps hence a server architecture that only looks at the headers and decide what to throw away and what to send forward.
+https://dl.acm.org/authorize?N698889
+And 1. the switch people do not care about anything but the highest data rates and we have use cases that are 2 orders of magnitude below these rates so we can do a lot of software.
+Comment - MJM: this is part of the evolution of the thinking of the group. Action to Eve: post the slide (done) and start a discussion on how to bring these ideas forward and that we do not have to look a the whole payload to make decisions.
+Comment - Eve: the MPEG-I creates that metadata identifiers.
+Question - Dave Oran: can you create common identifiers across sources?
+Answer - Eve: Not in MPEG-I but this is what we are doing. Big implication for name spaces.
+Comment - Dave Oran:  this could be related to work presented at Sigmetrics on fingerprinting content that have similarity
+http://pages.cs.wisc.edu/~akella/papers/sigmetrics09-measurement.pdf
+We should be looking at video fingerprinting and also how to decide what to do with some video based on how similar it is to other video.
+https://www.cs.cmu.edu/~srini/papers/2013.Anand.conext.pdf
+Comment - Eve: for this hackaton we should concentrate on what is means to be contextually related.
+Comment - Dave Oran: most IOT properties are static that is not true for video.
+Comment - Eve: there will be classes of meta-information that never change. Can we find information in the meta-data that we can hand our functions on? Let’s work on a subset of the larger problem and find a small number of functions that will also us to find the contextual relationships.
+Comment - MJM: it would be nice to bring the people who were influential in the previous hackatons into this discussion. We d could even ping them.
+
+Vancouver
+Two sessions requested so we have time to talk about the future of the group.
+Comment from Eve: it will give more time to think about the work and come up with new ideas.
+Please send agenda items!
+Day passes available.
+Comment - Colin: very limited number!
+
