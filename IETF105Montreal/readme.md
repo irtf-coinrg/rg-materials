@@ -1,14 +1,16 @@
-#COIN Meeting IRTF 105
-Agenda
+# COIN Meeting IRTF 105 
+# Agenda
 
-Administrivia and RG status:
+- Administrivia and RG status:
+
 	Agenda and note well 
 	Charter discussion
 	List of PRG Drafts 
 	Summary of the interim meeting 
 	Summary of the hackaton
 
-Presentations: 
+- Presentations: 
+
 (1) Dirk Kutscher, What is Computing in the Network? (10 min)
 (2) Joerg Ott, Different Approaches to In-Network Computing. (10 min)
 draft-kutscher-coinrg-dir-00
@@ -31,7 +33,8 @@ https://www.ietf.org/internet-drafts/draft-sarathchandra-coin-appcentres-00.txt
 (8) Peng Liu, Requirements for Computing in the Network (5 min)
 https://tools.ietf.org/html/draft-liu-coinrg-requirement-00
 
-Next steps:
+- Next steps:
+
 	Charter updates and milestones
 	Interim in September 
 	Meeting in Singapore 
