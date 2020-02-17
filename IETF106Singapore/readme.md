@@ -29,10 +29,9 @@
   (15 minutes) https://datatracker.ietf.org/doc/draft-kutscher-coinrg-dir/ 
   
   Klaus Wehrle/Ike Kunze: Transport Protocol Issues of In-Network Computing Systems
-  (new draft) (15 minutes)
+  (new draft) (15 minutes)https://datatracker.ietf.org/doc/draft-kunze-coinrg-transport-issues/ 
   
-  https://datatracker.ietf.org/doc/draft-kunze-coinrg-transport-issues/ Peng Lui:
-  Requirement of Computing in network (draft update)(10 min)
+  Peng Liu:Requirement of Computing in network (draft update)(10 min)
   https://datatracker.ietf.org/doc/draft-liu-coinrg-requirement/
 
   Compute-first-networking side meeting report:
