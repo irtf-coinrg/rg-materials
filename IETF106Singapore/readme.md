@@ -5,7 +5,9 @@
 - Chairs presentation (10 minutes)
 
   Scribe, administrivia, IPR and agenda bashing
+  
   Hackaton summary (MJ/Jeffrey)
+  
   Draft list (Eve)
 
 - Moving from PRG to RG: Comments from the IAB review (J/E/M) (5 minutes)
@@ -13,16 +15,21 @@
 - Research Presentations
 
   Joeg Ott: User-driven in-network computing at the (IoT) edge (15 minutes)
+  
   Alessandro Bassi: Vertical agriculture (15 minutes)
+  
   Jeff Elpern: Data plane programmability and telemetry (10 minutes)
+  
   Michel Bonfim: Service Function Chaining (10 minutes)
+  
 
 - Drafts Presentations/updates
 
   Joerg Ott/Dirk Kutscher: Directions for Computing in the Network (draft update)
-  (15 minutes) https://datatracker.ietf.org/doc/draft-kutscher-coinrg-dir/ Klaus
-  Wehrle/Ike Kunze: Transport Protocol Issues of In-Network Computing Systems
+  (15 minutes) https://datatracker.ietf.org/doc/draft-kutscher-coinrg-dir/ 
+  Klaus Wehrle/Ike Kunze: Transport Protocol Issues of In-Network Computing Systems
   (new draft) (15 minutes)
+  
   https://datatracker.ietf.org/doc/draft-kunze-coinrg-transport-issues/ Peng Lui:
   Requirement of Computing in network (draft update)(10 min)
   https://datatracker.ietf.org/doc/draft-liu-coinrg-requirement/
