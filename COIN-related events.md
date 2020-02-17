@@ -1,4 +1,4 @@
-#List of COIN-related conferences/seminars/meetings
+# List of COIN-related conferences/seminars/meetings
 
 - [ICIN2020:23rd Conference on Innovation in Clouds, Internet and Networks](https://www.icin-conference.org/) - Feb. 24-27 Paris
 
