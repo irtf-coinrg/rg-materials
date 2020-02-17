@@ -1,0 +1,296 @@
+﻿# COIN (P)RG Meeting at IETF-106
+* Friday Nov. 22 -10am-12:pm  Singapore Time - Sophia meeting room
+* Blue sheets on the datatracker
+* Attendees on MeetEcho: Bingyang Liu, Jeff Elpern, Marco Liebsch, Roberto Morabito, Suneesh Babu, Bhumip Khasnabish
+
+## Chairs presentation (10 minutes)
+* Scribe, administrivia, IPR and agenda bashing
+* Hackaton summary (MJ/Jeffrey)
+Real work was achieved. Next hackathon to focus on a common project. Ideas from Eve to be discussed at the interim.
+
+* Draft list (Eve)
+
+8 I-Ds!
+Status:
+- 1 new – presented at the meeting
+- 4 updated  - 2 of which will report out today
+- 3 to be updated next time – the original I-Ds (each by one of the co-chairs)
+
+Of the two that were updated but were not presented:
+- Industrial I-D – same team as the Transport draft, updated their Security considerations, traffic filtering
+- App-centric I-D – updated section re programming frameworks (decomposing services at runtime), future outcomes (producing a research roadmap)
+
+* Moving from PRG to RG: Comments from the IAB review (J/E/M) (5 minutes)
+(comments sent to the coinrg list)
+
+## Research Presentations
+
+### Joeg Ott: User-driven in-network computing at the (IoT) edge (15 minutes)
+Edge or falling off the edge, but no S/P/T (security/privacy/trust)
+Not looking at VMs, but rather devices with specific capabilities
+IoT, Mobile users (a certain locality)
+Two Provisioning models
+- Cloud-drive operation
+-User- or Device-driven operation – the code comes from them
+Mobile phone is your preferred device
+Two examples – Lua-based mobile code exec Trigger-action framework leveraging Bluetooth Low Energy Beacons for networking
+Commonality
+- Client driven
+- Microcontrollers
+- Bcast nets with strictly local discovery
+In-net compute ops - fn properties, discovery, choice/placement, orchestration, execution
+
+* Q (Erik Nordmark): any thoughts on how you name the different objects?
+* A: We distribute our own scripts with implicit names (attribute based)
+
+* Q (Erik Nordmark): are you asking something like "temperature on devices"?
+* A: yes, need to find appropriate devices. There are numeric IDs, no longer names
+
+
+### Alessandro Bassi: Vertical agriculture (15 minutes)
+Main problem – agreement on what IoT is
+IoT is related to a real object – yet all objects have a digital twin in cyberspace/digital world
+Ref arch = a blueprint
+
+* no questions 
+
+### Jeff Elpern: Data plane programmability and telemetry (10 minutes)
+(Jeff runs the application group that moves the technology into the products at Noviflow)
+Telemetry from “passive devices” – how do we figure out latency, not INT capable, from closed loop INT, etc
+The carriers cannot supply active telemetry – thus how to get telemetry in a passive manner
+Every participant in programmable network is updating the data coming through them.
+What’s the latency through these network elements? No one really knows, e.g., for firewalls?
+Let’s put a wrapper around it, let’s do the computation in the switches, because the devices cannot add the telemetry themselves.
+Provide a packet broker service – sends out to the Tool Farm, with a new tag.
+Timestamping as the flows come through the switch.
+Send to analytics and the packet moves on as normal.
+Can tell how much latency that firewall has caused, but the tool hasn’t had to adapt at all.
+Down side – the tyranny of INT data
+- The data comes so quickly
+- Thus 1st data reduction strategy – can start to come up with an alg to gather info from a pkt and the value of that
+- You therefore don’t do it in every packet, you spread these techniques out, but keep the cost down
+The data is being collected in the network.
+Adds compute in the network
+Obviously need timestamps and they need to be accurate
+- Each of the protocols use different timestamp formats
+- E.g., 1588 HW timestamp vs app level timestamps
+
+* Q (Thomas Rahi): For time stamps, you need accurate timing and the clock is in
+  hardware. In IoT, we often have different timestamp formats. Can you
+  have programmable time stamp formats and accurate timing?
+* A: A software-timestamp is more than fine and has more accuracy than we
+  need for measuring latency.
+
+### Michel Bonfim: Service Function Chaining (10 minutes)
+Uses probabilistic data structure to track large flows.
+Position between classifiers to form an SFC-enabled domain.
+At hackathon created a P4-enabled SFC device, with SFCMon in the pipeline, between Classifier and SFF.
+
+* Q (Haoyu Song): you have a component for detecting large flows, but what are you actually monitoring?
+* A: We keep track of each SFC and look at large flows. This runs in real-time.
+* Comment (Haoyu Song): We have another draft that describes additional functionality.
+
+
+## Drafts Presentations/updates
+
+### Joerg Ott/Dirk Kutscher: Directions for Computing in the Network (draft update) (15 minutes)
+* https://datatracker.ietf.org/doc/draft-kutscher-coinrg-dir/
+Update to the draft
+- What does in-network really mean? Exploring numerous (present and future) options
+- Some thoughts on computing – looking at code and its provisioning, execution
+- What COIN could/should look at
+Lots of Computing “in the Network” today
+- Including edge computing as defined by the cloud but closer
+Example: mobile edge computing
+- Managing infrastructure in the access network for running VMs in a Telco deployment
+- Contractual agreements to do something with the traffic, to provide enhancements for certain apps fo example
+- A rather static environment
+- Could be used as an exec environment
+- BUT not where the interesting research questions are
+Streaming Frameworks – typically for the cloud
+- park, kafka, samza, flink – application layer solutions
+- Run nicely in the cloud, but because run overlay they cannot take advantage of the network
+- Different namespaces (DNS, discovery)
+- Trust often centralized - PKIs for TLS
+
+I-D formulates a notion of Computing in the Network
+- Do not require fixed locations of data and computation
+- Can lay out processing graphs flexibly – meeting requirements optimally.
+
+Sometimes we can move fns (to be close to large data assets)
+Sometimes we gradually move data where it is needed
+- Conditions may change dynamically
+- Optimizations?
+
+Updates
+- SFC – been designed for the Telco cloud – updated how this is described
+New RFC 8677 – naming fn & mapping to lower layer ids; could be used to construct fn graphs
+- Added text on MEC – multi-access edge computing and commented on combination with network slicing
+- Included 1 example based on CFN: distributed computing meets ICN (from ACM ICN conference)
+Treat computing as a first-class citizen in the system.
+Reasoning about networked computation – scalable, secure, reliable (CC, fail-safe, etc), useful for app developers
+Not just about controlling pkt forwarding – thru tunnels, routing updates, etc and more about distributed computing, operating at a higher layer
+
+Uses the concept that the services are names in the network:
+- Should be able to leverage different platforms for different fns
+- Nodes could be part of a distributed app context
+- Could be part of more than one context at a time
+- Instantiate/invoke fns
+- 3 types of functions: stateless fns, stateless actors, data
+- Remote Method Invocation protocol for invoking stateless fns and actor member functions, no assumption on fn complexity, exec time and fns can trigger other fns
+- Information in the system: Where are the functions, resource utilization, performance; info maintained by distributed data structures.
+
+COIN elements in CFN-ICN:
+- Logical fns include resource availability / load info dissemination (CRDTs distr data structure)
+- Transport and RMI model (RICE – remote method invocation in ICN)
+- RMI steering (ICN forwarding hints)
+- Programming & execution environmnets (Python in this PoC)
+- Compute classes – stateless fns, stateful actors, data
+- Fn naming – ICN naming
+
+A task scheduler needs to understand the nature of the programming: 
+- Analyzes the resource descriptions
+- Make decisions on where fns would be allocated and executed
+
+Code – analysis example:
+- Cannot predict what fns will be called at any given time
+- Thus done programmatically
+The computation graph is constantly updated – e.g., non-conflicting merge ops
+
+Each node has a task schedule:
+- Dynamically decides where to invoke the fn, to steer traffic, depending
+
+CFN-ICN summary:
+- Distrib computation framework, for gen’l purpose computation
+- Uses computation graph, resource ad proto and scheduler
+- Includes RIC
+- Demo
+
+Outlook for the future:
+- Enable more decentralized decision-making in the net
+- Consider dynamic net and platform load
+- Think about QoS
+
+Suggestions
+- COIN is more than forwarding packets to nodes
+- For the draft – doc more representative use cases (SR), taxonomy to aid discussion, help understand problem
+
+* Q (Toerless Eckert): why not discussing this in DINRG?
+* A: focus here is distributed computing, DINRG is about decentralized internet infrastructure, eg naming system.
+* Comment (Colin Perkins): Overlaps exists and are not a problem. The focuses are sufficiently different.
+* Q (Toerless Eckert): what performance we can expect?
+* A: some performance evaluations are available in the paper.
+
+* Q (Nicolas Kuhn):to what extend the architecture is generic? Able to address futuristic use cases?
+* A: let us talk after the meeting.
+
+* Q (Geng Liang): how to distinguish compute in the network from programmable network?
+* A: programmable dataplane as means to enable compute in the network; programming enables COIN
+
+* Q ((Geng Liang): Is P4 in scope?
+* A: P4 as a tool to fast implementation;
+* Comment (Dave Oran): aspects of P4 are relevant but better P4 compiler not in the scope, better TCAM switch to support P4? No. What kind of computation can be expressed in P4 or network-style hardware? Pointer to latest Hotnets’ paper(from Noa Zilberman).
+
+* Q (Tim Wattenberg): Is this draft going to “informational”? I would like roadmap discussion; the IESG has definitions on how to select experimental, informational etc.
+* A: It will be informational yes.
+
+### Klaus Wehrle/Ike Kunze: Transport Protocol Issues of In-Network Computing Systems (new draft) (15 minutes)
+* https://datatracker.ietf.org/doc/draft-kunze-coinrg-transport-issues/
+
+(same authors as Industrial use case draft)
+Original design principle:
+- All compute (modifying app payload) is done at the net endpoints
+- Versus new notion: purposefully and explicitly process pkts in the net (either edge-clouds or on-path)
+Breaks the e2e principle btwn src and dest
+
+If you do have programmable data planes, keeping end-to-end between source and destination, means End-to-intermediate-to-intermediate-…-to-End
+Open issues:
+- How to address the intermediate points
+- What’s the flow granularity
+- Authentication
+- Security
+- Advanced transport features
+Addressing options:
+- What to address? Addr based (seq of IP + port), content/fn based, location-based?
+- How strict to addr? Loose routing, strict?
+- Comm pattern? 1:1, 1:n, n:m
+Related to the IETF Spring WG.
+
+What about the processing granularity? Packet-, msg-, stream-based?
+- Just did image analysis on a P4 switch!!! 
+[NOTE: Follow up for proposed hackathon idea re contextually-related stream processing]
+
+Which switch has done the changes? What changed? Who made the changes? How to synch states?
+How to auth pkt mods made by intermediate nodes?
+Here ACE WG could be relevant
+Encryption
+- In-net proc’ing currently working on plain text data – encrypt payload is an option that should not be ruled out, new transport protocols (QUIC) encrypt hdrs and payload
+- How can in-network computing work on encrypted data – decrypt in intermed nodes, etc
+
+Advanced Transport features
+- Retransmissions
+- Who is in charge when something goes wrong? CC, FC, flow ordering/seq numbers
+- Different features impose different requirements
+Typical use cases – DC, industrial, Internet
+
+Conclusions:
+- No one-fits–all solutions
+- Work with other experts: SPRING (addressing), ACE (authentication), LOOPS (retransmissions)
+
+* Q (Colin Perkins): ACE WG: different app scenarios and use cases affecting transport are interesting, but also how computation models affects transport?
+* A: yes
+
+* Q (Toerless Eckert): classify in-network compute options and describe what we could do with them. vs starting from P4; can we qualify constraints on resources? Need understanding about what can be computed.
+* A: We are working on several examples and ran into these transport issues, for example when working with P4. 
+
+* Comment (Dirk Kutscher): do you assume a basic computing model that one compute flows from a node to a node, NOT edge models. Would be good for the group to distinguish between these models. Very different timescales: network, app, processing – RICE could be of interest.
+
+* Q (Diego Lopez): merging edge patterns and general Internet patterns seems to be a challenge
+* A: yes
+
+* Comment (Diego Lopez): Quantum Computing is not that far away.
+
+* Q (Diego Lopez): multi-context crypto (secure MPC?) could be relevant?
+* A: secure MPC is computationally heavy
+
+* Comment (Diego Lopez): SFC is working on proof of transport, could be interesting
+* A: yes
+
+* Q (Dave Oran): if you have to consider all of these issues again, we may be missing the boat. Maybe we don't need a traditional transport protocol?
+* A: this is just describing the issues -- not solutions
+
+### Peng Lui: Requirement of Computing in network (draft update)(10 min)
+* https://datatracker.ietf.org/doc/draft-liu-coinrg-requirement/
+More requirements have been collected and categorized reqs into perf, fn and management.
+
+* no questions
+
+### Compute-first-networking side meeting report: Jeffrey He: Framework of Compute First Networking (CFN) (10 minutes)
+* https://datatracker.ietf.org/doc/draft-li-rtgwg-cfn-framework/
+
+Addressing use cases for edge such and edge-cloud based recognition in AR.
+What kinds of services are suitable for edge? With low latency + high bandwidth?
+Rely on data center cloud to help edge (failover, load balancing).
+Requirements and challenges
+- Service equivalency
+- Service dynamics
+Use anycast for service equivalency, but make it dynamic
+Challenge 1 – flow affinity, incremental change
+Challenge 2: Emphasis on the route selection vs the use cases – Dynamic Anycast
+Questions raised
+- What is service? Is placement in scope? Service placement and selecting path to which service instance are separate, this proposal about latter
+
+Question raised on the list: relationship with COINRG? The proposal is focusing on routing optimization.
+
+* Comment (MJM): The confusion between this CFN (HCFN?) and the research CFN needs to be clarified.
+
+* Q (Dave Oran): Why not consider “hotspot redundancy” for high reliable system?
+* A: Not yet. Switching to different service instances will break the flow affinity at current design.
+
+## Future plans
+* Interim meeting mid-February for document management, new research
+  topics and proposed hackathon architecture evolution beyond P4
+  examples
+  
+  
+
