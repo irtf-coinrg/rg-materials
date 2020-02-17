@@ -1,0 +1,19 @@
+Hackaton information - IETF 105
+
+From p4.org:
+
+https://github.com/p4lang/tutorials
+In particular look at the  Obtaining required software section to setup your environment.
+Printing the cheat sheet could also be a good idea:
+https://drive.google.com/file/d/1Z8woKyElFAOP6bMd8tRa_Q4SA1cd_Uva/view
+
+This reference to the language is also interesting:
+https://github.com/p4lang/education/blob/master/GettingStarted.md
+Look into P4 14 (as mentioned at the interim) for some available tools at the hackaton or 16.
+This page also has a list of Code Examples but we are still looking for small projects for people who will not bring their own ideas and would like to do more than just play with the code.
+
+If you know of other resources please tell us!
+
+And invite people who may not be on the list :)
+
+There will be help from experienced P4 programmers from Noviflow to get you started and help throughout.
