@@ -27,6 +27,7 @@
 
   Joerg Ott/Dirk Kutscher: Directions for Computing in the Network (draft update)
   (15 minutes) https://datatracker.ietf.org/doc/draft-kutscher-coinrg-dir/ 
+  
   Klaus Wehrle/Ike Kunze: Transport Protocol Issues of In-Network Computing Systems
   (new draft) (15 minutes)
   
