@@ -1,0 +1,145 @@
+---
+title: Terminology for Computing in the Network
+abbrev: COIN Terminology
+docname: draft-irtf-coinrg-coin-terminology-00
+date: {DATE}
+category: info
+ipr: trust200902
+area: General
+workgroup: COINRG
+stream: IRTF
+
+stand_alone: yes
+pi: [toc, sortrefs, symrefs, docmapping]
+
+author:
+-
+    ins: I. Kunze
+    name: Ike Kunze
+    org: RWTH Aachen University
+    abbrev: RWTH Aachen
+    email: kunze@comsys.rwth-aachen.de
+    street: Ahornstr. 55
+    city: Aachen
+    code: D-52074
+    country: Germany
+-
+    ins: K. Wehrle
+    name: Klaus Wehrle
+    org: RWTH Aachen University
+    abbrev: RWTH Aachen
+    email: wehrle@comsys.rwth-aachen.de
+    street: Ahornstr. 55
+    city: Aachen
+    code: D-52074
+    country: Germany
+-
+    ins: D. Trossen
+    name: Dirk Trossen
+    org: Huawei Technologies Duesseldorf GmbH
+    abbrev: Huawei
+    email: Dirk.Trossen@Huawei.com
+    street: Riesstr. 25C
+    city: Munich
+    code: D-80992
+    country: Germany
+
+-
+    ins: M.J. Montpetit
+    name: Marie-Jose Montpetit
+    org: Concordia University
+    abbrev: Concordia
+    email: marie@mjmontpetit.com
+    city: Montreal
+    country: Canada
+
+- 
+    ins: X. de Foy
+    name: Xavier de Foy
+    org: InterDigital Communications, LLC
+    street: '1000 Sherbrooke West'
+    city: Montreal
+    code: H3A 3G4
+    country: Canada
+    email: xavier.defoy@interdigital.com
+    
+-
+    ins: D. Griffin
+    name: David Griffin
+    org: University College London
+    abbrev: UCL
+    street: Gower St
+    city: London
+    code: WC1E 6BT
+    country: UK
+    email: d.griffin@ucl.ac.uk
+
+- 
+    ins: M. Rio
+    name: Miguel Rio
+    org: University College London
+    abbrev: UCL
+    street: Gower St
+    city: London
+    code: WC1E 6BT
+    country: UK
+    email: miguel.rio@ucl.ac.uk
+
+
+informative:
+  I-D.draft-irtf-coinrg-use-cases-02:
+  I-D.draft-kutscher-coinrg-dir-02:
+  TRANSPORT: DOI.10.1109/ICNP55882.2022.9940379
+
+
+--- abstract
+
+The term Computing in the Network (COIN) is used for a diverse set of scenarios.
+Often associated with leveraging richer computing capabilities within network elements, its clear scope is yet unknown.
+This document tries to bring clarity to the current understanding of COIN through defining a terminology to streamline corresponding discussions.
+
+--- middle
+
+
+# Introduction {#intro}
+The ongoing development of ever richer computing capabilities within network elements is often captured as Computing in the Network (COIN).
+However, there are different interpretations of the term, often revolving around the 'place' of execution, captured by the 'in-network' aspect of COIN {{TRANSPORT}}. 
+The different views range from 'only computations on networking hardware' on the one hand to 'COIN is a subset of edge/cloud computing' on the other hand.
+These differences in interpretation often lead to difficulties in discussions.
+
+The goal of this document is to contribute to the clarity in any discussion on COIN through outlining what is a first understanding of a terminology that ought to be used in such discussion. 
+The first definitions in this context were proposed by {{I-D.draft-kutscher-coinrg-dir-02}} and later adapted by {{I-D.draft-irtf-coinrg-use-cases-02}} before being moved to this separate document for broader discussion.
+
+With this in mind, this document captures the current state of agreement on a common terminology. 
+It is likely that the document will (need to) see a future revision if this understanding is improved through increased insights and changes in the views of the community. 
+
+
+# Terminology {#terms}
+
+Programmable Network Devices (PNDs): network devices, such as network interface cards and switches, which are programmable, e.g., using P4 or other languages.
+
+(COIN) Execution Environment: a class of target environments for function execution, for example, a JVM-based execution environment that can run functions represented in JVM byte code 
+
+COIN System: the PNDs (and end systems) and their execution environments, together with the communication resources interconnecting them, operated by a single provider or through interactions between multiple providers that jointly offer COIN capabilities
+
+COIN Capability: a feature enabled through the joint processing of computation and communication resources in the network
+
+(COIN) Program: a monolithic functionality that is provided according to the specification for said program and which may be requested by a user.  A composite service can be built by orchestrating a combination of monolithic COIN programs.
+
+(COIN) Program Instance: one running instance of a program
+
+COIN Experience: a new user experience brought about through the utilization of COIN capabilities
+
+# Security Considerations {#sec_considerations}
+
+TBD
+
+
+
+# IANA Considerations
+N/A
+
+
+# Conclusion
+This document defines a core terminology for COIN at this point in the work of COIN RG and is thus positioned as a living document which may see revision in due course.
+
