@@ -210,7 +210,7 @@ Computing in the Network (COIN) comes with the prospect of deploying processing 
 While such functionality can be beneficial, it has to be carefully placed into the context of the general Internet communication and it needs to be clearly identified where and how those benefits apply.
 
 This document presents some use cases to demonstrate how a number of salient COIN-related applications can benefit from COIN.
-It further identifies their essential requirements, using normative language to provide a formalized structure for a subsequent analysis.
+Furthermore, to guide research on COIN, it further identifies essential research questions and outlines desirable capabilities that COIN systems addressing the use cases may need to support.
 It is a product of the Computing in the Network Research Group (COINRG).
 It is not an IETF product and it is not a standard.
 
@@ -233,7 +233,7 @@ Sections 3 through 6 capture those categories of use cases and provide the main 
 The goal is to present how computing resources inside the network impact existing services and applications or allow for innovation in emerging application domains. 
 
 By delving into some individual examples within each of the above categories, we outline opportunities and propose possible research questions for consideration by the wider community when pushing forward 'in-network computing' architectures. 
-Furthermore, identifying requirements for an evolving solution space of COIN capabilities is another objective of the use case descriptions. 
+Furthermore, identifying desirable capabilities for an evolving solution space of COIN systems is another objective of the use case descriptions. 
 To achieve this, the following taxonomy is proposed to describe each of the use cases:
 
 1. Description: High-level presentation of the purpose of the use case and a short explanation of the use case behavior.
@@ -246,12 +246,12 @@ To achieve this, the following taxonomy is proposed to describe each of the use 
 
 5. Research questions: Essential questions that are suitable for guiding research to achieve the identified opportunities.
 
-6. Requirements: Description of requirements for any COIN capability solutions that may need development along the opportunities outlined in item 4; we limit requirements to those directly describing COIN capabilities, recognizing that any use case will realistically hold many additional requirements for its realization. 
+6. Desirable capabilities: Description of capabilities for any COIN solutions that may need development along the opportunities outlined in item 4; we limit the capabilities to those directly affecting COIN, recognizing that any use case will realistically require many additional capabilities for its realization. 
 
 
 This document discusses these six aspects along a number of individual use cases to demonstrate the diversity of COIN applications.
 It is intended as a basis for further analyses and discussions within the Computing in the Network Research Group (COINRG) and the wider research community.
-A companion document {{USECASEANALYSIS}} is tasked with performing a cross-use case analysis, i.e., summarizing the key research questions and identifying key requirements across all use cases.
+A companion document {{USECASEANALYSIS}} is tasked with performing a cross-use case analysis, i.e., summarizing and distilling the key research questions across all use cases.
 This document represents the consensus of COINRG.
 
 # Terminology {#terms}
@@ -556,9 +556,8 @@ This approach is best-suited for settings with a simple model that is focused on
 
 Modern production lines and shop floors are characterized by an increasing number of involved devices and sensors, a growing level of dependency between the different components, and more complex control models.
 A centralized control is desirable to manage the large amount of available information which often has to be pre-processed or aggregated with other information before it can be used.
-PLCs are not designed for this array of tasks and computations could theoretically be moved to more powerful devices.
-These devices are no longer close to the controlled objects and induce additional latency.
-Moving compute functionality onto COIN execution environments inside the network offers a new solution space to these challenges, providing new compute locations with much smaller latencies.
+As a result, computations are increasingly spatially decoupled and moved away from the controlled objects, thus inducing additional latency.
+Instead moving compute functionality onto COIN execution environments inside the network offers a new solution space to these challenges, providing new compute locations with much smaller latencies.
 
 
 ### Characterization
@@ -580,6 +579,7 @@ In feedback control, the current state of the system is monitored, e.g., using s
 {: #processControl title="Simple feedback control model."}
 
 Apart from the control model, the quality of the control primarily depends on the timely reception of the sensor feedback which can be subject to tight latency constraints, often in the single-digit millisecond range.
+Even shorter feedback requirements may exist in other use cases, such as interferometry or high-energy physics, but these use cases are out of scope for this document. 
 While low latencies are essential, there is an even greater need for stable and deterministic levels of latency, because controllers can generally cope with different levels of latency, if they are designed for them, but they are significantly challenged by dynamically changing or unstable latencies.
 The unpredictable latency of the Internet exemplifies this problem if, e.g., off-premise cloud platforms are included.
 
@@ -610,17 +610,17 @@ Early approaches such as {{RUETH}} and {{VESTIN}} have already shown the general
     * How do the different control instances interact?
 
 
-###  Requirements
+###  Desirable capabilities
 
-* Req 4.1.1: The interaction between the COIN execution environments and the global controller SHOULD be explicit.
+* Capability 4.1.1: The interaction between the COIN execution environments and the global controller should be explicit.
 
-* Req 4.1.2: The interaction between the COIN execution environments and the global controller MUST NOT negatively impact the control quality.
+* Capability 4.1.2: The interaction between the COIN execution environments and the global controller must not negatively impact the control quality.
 
-* Req 4.1.3: Actions of the COIN execution environments MUST be overridable by the global controller.
+* Capability 4.1.3: Actions of the COIN execution environments must be overridable by the global controller.
 
-* Req 4.1.4: Functions in COIN execution environments SHOULD be executed with predictable delay.
+* Capability 4.1.4: Functions in COIN execution environments should be executed with predictable delay.
 
-* Req 4.1.5: Functions in COIN execution environments MUST be executed with predictable accuracy.
+* Capability 4.1.5: Functions in COIN execution environments must be executed with predictable accuracy.
 
 
 
@@ -653,8 +653,8 @@ As sensors are often set up redundantly, part of the collected data might also b
 Moreover, sensors are often hard to configure or not configurable at all which is why their resolution or sampling frequency is often larger than required.
 Consequently, it is likely that more data is transmitted than is needed or desired, prompting the deployment of filtering techniques.
 For example, COIN programs deployed in the on-premise network could filter out redundant or undesired data before it leaves the premise using simple traffic filters, thus reducing the required (upload) bandwidths.
-The available sensor data could be scaled down using packet-based sub-sampling, i.e., only forwarding every n-th packet, or using filtering as long as the sensor value is in an uninteresting range while forwarding with a higher resolution once the sensor value range becomes interesting (cf. {{KUNZE-SIGNAL}}).
-While the former variant is oblivious to the semantics of the sensor data, the latter variant requires an understanding of the current sensor levels.
+The available sensor data could be scaled down using standard statistical sampling, packet-based sub-sampling, i.e., only forwarding every n-th packet, or using filtering as long as the sensor value is in an uninteresting range while forwarding with a higher resolution once the sensor value range becomes interesting (cf. {{KUNZE-SIGNAL}}).
+While the former variants are oblivious to the semantics of the sensor data, the latter variant requires an understanding of the current sensor levels.
 In any case, it is important that end-hosts are informed about the filtering so that they can distinguish between data loss and data filtered out on purpose.
 
 In practice, the collected data is further processed using various forms of computation.
@@ -689,13 +689,13 @@ While they allow for handling large volume applications, they are tied to perfor
     * How can changes to the data by COIN programs be signaled to the end-hosts?
 
 
-###  Requirements {#FilteringReq}
+###  Desirable capabilities {#FilteringReq}
 
-* Req 4.2.1: Filters and preprocessors MUST conform to application-level syntax and semantics.
+* Capability 4.2.1: Filters and preprocessors must conform to application-level syntax and semantics.
 
-* Req 4.2.2: Filters and preprocessors MAY leverage packet header and payload information.
+* Capability 4.2.2: Filters and preprocessors may leverage packet header and payload information.
 
-* Req 4.2.3: Filters and preprocessors SHOULD be reconfigurable at run-time.
+* Capability 4.2.3: Filters and preprocessors should be reconfigurable at run-time.
 
 
 ## Industrial Safety {#safety}
@@ -708,8 +708,8 @@ In traditional factories, the regions of contact between humans and machines are
 Simple safety measures like emergency switches at the working positions are enough to provide a good level of safety.
 
 Modern factories are characterized by increasingly dynamic and complex environments with new interaction scenarios between humans and robots.
-Robots can either directly assist humans or perform tasks autonomously.
-The intersect between the human working area and the robots grows and it is harder for human workers to fully observe the complete environment.
+Robots can directly assist humans, perform tasks autonomously, or even freely move around on the shopfloor. 
+Hence, the intersect between the human working area and the robots grows and it is harder for human workers to fully observe the complete environment.
 Additional safety measures are essential to prevent accidents and support humans in observing the environment.
 
 ### Characterization
@@ -717,14 +717,16 @@ Additional safety measures are essential to prevent accidents and support humans
 Industrial safety measures are typically hardware solutions because they have to pass rigorous testing before they are certified and deployment-ready.
 Standard measures include safety switches and light barriers.
 Additionally, the working area can be explicitly divided into 'contact' and 'safe' areas, indicating when workers have to watch out for interactions with machinery.
+For example, markings on the factory floor can show the areas where robots move or indicate their maximum physical reach. 
 
-These measures are static solutions, potentially relying on specialized hardware, and are challenged by the increased dynamics of modern factories where the factory configuration can be changed on demand.
+These measures are static solutions, potentially relying on specialized hardware, and are challenged by the increased dynamics of modern factories where the factory configuration can be changed on demand or where all entities are freely moving around.
 Software solutions offer higher flexibility as they can dynamically respect new information gathered by the sensor systems, but in most cases they cannot give guaranteed safety.
 COIN systems could leverage the increased availability of sensor data and the detailed monitoring of the factories to enable additional safety measures with shorter response times and higher guarantees.
 Different safety indicators within the production hall could be combined within the network so that PNDs can give early responses if a potential safety breach is detected.
 For example, the positions of human workers and robots could be tracked and robots could be stopped when they get too close to a human in a non-working area or if a human enters a defined safety zone.
 More advanced concepts could also include image data or combine arbitrary sensor data.
-
+Finally, the increasing softwarization of industrial processes can also lead to new problems, e.g., if software bugs cause unintended movements of robots.
+Here, COIN systems could independently double check issued commands to void unsafe commands.
 
 ### Existing Solutions
 
@@ -735,6 +737,7 @@ Such solutions, however, require setting up an additional system and do not leve
 ###  Opportunities
 
 * Executing safety-critical COIN functions on PNDs could allow for early emergency reactions based on diverse sensor feedback with low latencies.
+* COIN software could provide independent on-path surveillance of control software-initiated actions to block unsafe commands.
 
 
 ### Research Questions
@@ -743,11 +746,11 @@ Such solutions, however, require setting up an additional system and do not leve
   * Do these measures actually improve safety?
 * RQ 4.3.2: Which sensor information can be combined and how?
 
-###  Requirements
+###  Desirable capabilities 
 
-* Req 4.3.1: COIN-based safety measures MUST NOT degrade existing safety measures.
+* Capability 4.3.1: COIN-based safety measures must not degrade existing safety measures.
 
-* Req 4.3.2: COIN-based safety measures MAY enhance existing safety measures.
+* Capability 4.3.2: COIN-based safety measures may enhance existing safety measures.
 
 
 # Improving existing COIN capabilities {#existingCapabilities}
@@ -1031,16 +1034,16 @@ This document presented use cases gathered from several application domains that
 We distinguished between use cases in which COIN may enable new experiences ({{newExperiences}}), expose new features ({{newCapabilities}}), or improve on existing system capabilities ({{existingCapabilities}}), and other use cases where COIN capabilities enable totally new applications, for example, in industrial networking ({{newEnvironments}}).
 
 Beyond the mere description and characterization of those use cases, we identified opportunities arising from utilizing COIN capabilities as well as research questions that may need to be addressed before being able to reap those opportunities.
-We also outlined possible requirements for building a COIN system that may realize these use cases.
+We also outlined desirable capabilities for COIN systems realizing these use cases.
 
 We acknowledge that this work offers no comprehensive overview of possible use cases and is thus only a snapshot of what may be possible if COIN capabilities existed.  
 In fact, the decomposition of many current client-server applications into node by node transit could identify other opportunities for adding computing to forwarding notably in supply-chain, health care, intelligent cities and transportation and even financial services (among others).
 
 With this in mind, updates to this document might become necessary or desirable in the future to capture this extended view on what may be possible. 
-We are, however, confident that the current selection of use cases, each describing the dimensions of opportunities, research questions, and requirements, already represents a useful set of scenarios that yield themselves for a subsequent analysis that is currently intended to be performed in {{USECASEANALYSIS}}. 
+We are, however, confident that the current selection of use cases, each describing the dimensions of opportunities, research questions, and desired capabilities, already represents a useful set of scenarios that yield themselves for a subsequent analysis that is currently intended to be performed in {{USECASEANALYSIS}}. 
 Through this, the use cases presented here together with the intended analysis provide direct input into the milestones of COINRG in terms of required functionalities.
 
 # Acknowledgements
 
-The authors would like to thank Chathura Sarathchandra for reviewing the document and David Oran, Phil Eardley, Stuart Card, Jeffrey He, Toerless Eckert, and Jon Crowcroft for providing comments on earlier versions of the document.
+The authors would like to thank Chathura Sarathchandra for reviewing the document and David Oran, Phil Eardley, Stuart Card, Jeffrey He, Toerless Eckert, and Jon Crowcroft for providing comments on earlier versions of the document and during the research group last call.
 
