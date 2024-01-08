@@ -197,6 +197,8 @@ informative:
     target: 'https://blogs.oracle.com/cloud-infrastructure/post/first-principles-l2-network-virtualization-for-lift-and-shift'
   KUNZE-APPLICABILITY: DOI.10.1109/ICPS49255.2021.9468247
   KUNZE-SIGNAL: DOI.10.1109/ISIE45552.2021.9576221
+  SILKROAD: DOI.10.1145/3098822.3098824
+  GREENAI: DOI.10.1109/PIMRC56721.2023.10293863
 
 
 
@@ -370,27 +372,27 @@ This capability, together with the underlying path-based forwarding capability (
    * RQ 3.1.8: What COIN capabilities may support the execution of (COIN) programs and their instances?
 
 
-###  Requirements
+### Desirable Capabilities
 
-   * Req 3.1.1: Any COIN system MUST provide means for routing of service requests between resources in the distributed environment.
+   * Capability 3.1.1: Any COIN system must provide means for routing of service requests between resources in the distributed environment.
    
-   * Req 3.1.2: Any COIN system MUST provide means for identifying services exposed by (COIN) programs for directing service requests.
+   * Capability 3.1.2: Any COIN system must provide means for identifying services exposed by (COIN) programs for directing service requests.
    
-   * Req 3.1.3: Any COIN system MUST provide means for identifying (COIN) program instances for directing (affinity) requests to a specific (COIN) program instance.
+   * Capability 3.1.3: Any COIN system must provide means for identifying (COIN) program instances for directing (affinity) requests to a specific (COIN) program instance.
 
-   * Req 3.1.4: Any COIN system MUST provide means for dynamically choosing the best possible service sequence of one or more (COIN) programs for a given application experience, i.e., support for chaining (COIN) program executions. 
+   * Capability 3.1.4: Any COIN system must provide means for dynamically choosing the best possible service sequence of one or more (COIN) programs for a given application experience, i.e., support for chaining (COIN) program executions. 
    
-   * Req 3.1.5: Means for discovering suitable (COIN) programs SHOULD be provided.
+   * Capability 3.1.5: Means for discovering suitable (COIN) programs should be provided.
 
-   * Req 3.1.6: Any COIN system MUST provide means for pinning the execution of a service of a specific (COIN) program to a specific resource, i.e., (COIN) program instance in the distributed environment.
+   * Capability 3.1.6: Any COIN system must provide means for pinning the execution of a service of a specific (COIN) program to a specific resource, i.e., (COIN) program instance in the distributed environment.
 
-   * Req 3.1.7: Any COIN system SHOULD provide means for packaging micro-services for deployments in distributed networked computing environments. 
+   * Capability 3.1.7: Any COIN system should provide means for packaging micro-services for deployments in distributed networked computing environments. 
    
-   * Req 3.1.8: The packaging MAY include any constraints regarding the deployment of (COIN) program instances in specific network locations or compute resources, including PNDs. 
+   * Capability 3.1.8: The packaging may include any constraints regarding the deployment of (COIN) program instances in specific network locations or compute resources, including PNDs. 
    
-   * Req 3.1.9: Such packaging SHOULD conform to existing application deployment models, such as mobile application packaging, TOSCA orchestration templates or tar balls or combinations thereof. 
+   * Capability 3.1.9: Such packaging should conform to existing application deployment models, such as mobile application packaging, TOSCA orchestration templates or tar balls or combinations thereof. 
 
-   * Req 3.1.10: Any COIN system MUST provide means for real-time synchronization and consistency of distributed application states.
+   * Capability 3.1.10: Any COIN system must provide means for real-time synchronization and consistency of distributed application states.
 
 
 
@@ -458,19 +460,19 @@ While delay is inherently related to information transmission and if we continue
 
 * RQ 3.2.6: How COIN provide the necessary infrastructure for the use of interactive XR everywhere?
 
-###  Requirements
+### Desirable Capabilities
 
-* Req 3.2.1: COIN systems for XR MUST allow joint collaboration across networks not just as part of the same subnetwork.
-* Req 3.2.2: COIN systems for XR SHOULD provide multi-stream combining in the network for multi-views and efficient transmission.
-* Req 3.2.3: COIN systems for XR SHOULD be able to dynamically include extra streams for data-intensive services and processes.
-* Req 3.2.4: COIN systems for XR MAY use edge networking and computing for improved performance and performance management independent of a cloud connection.
-* Req 3.2.5: COIN systems for XR MAY integrate local and fog caching with cloud-based pre-rendering.
-* Req 3.2.6: COIN systems for XR SHOULD jointly optimize COIN and higher layer protocols to reduce latency especially in data-intensive applications at the edge.
-* Req 3.2.7: COIN systems for XR SHOULD support nomadicity and mobility.
-* Req 3.2.8: COIN systems for XR SHOULD provide means for performance optimization that reduces transmitted data and optimizes loss protection.
-* Req 3.2.9: COIN systems for XR MAY provide means for trend analysis and telemetry.
-* Req 3.2.10: COIN systems for XR SHOULD integrate PNDs with holography, 3D displays, and image rendering processors for offering to improve service location selections.
-* Req 3.2.11: COIN systems for XR MAY provide means for managing the quality of XR sessions through reduced in-network congestion and improve flow delivery by determining how to prioritize XR data.
+* Capability 3.2.1: COIN systems for XR must allow joint collaboration across networks not just as part of the same subnetwork.
+* Capability 3.2.2: COIN systems for XR should provide multi-stream combining in the network for multi-views and efficient transmission.
+* Capability 3.2.3: COIN systems for XR should be able to dynamically include extra streams for data-intensive services and processes.
+* Capability 3.2.4: COIN systems for XR may use edge networking and computing for improved performance and performance management independent of a cloud connection.
+* Capability 3.2.5: COIN systems for XR may integrate local and fog caching with cloud-based pre-rendering.
+* Capability 3.2.6: COIN systems for XR should jointly optimize COIN and higher layer protocols to reduce latency especially in data-intensive applications at the edge.
+* Capability 3.2.7: COIN systems for XR should support nomadicity and mobility.
+* Capability 3.2.8: COIN systems for XR should provide means for performance optimization that reduces transmitted data and optimizes loss protection.
+* Capability 3.2.9: COIN systems for XR may provide means for trend analysis and telemetry.
+* Capability 3.2.10: COIN systems for XR should integrate PNDs with holography, 3D displays, and image rendering processors for offering to improve service location selections.
+* Capability 3.2.11: COIN systems for XR may provide means for managing the quality of XR sessions through reduced in-network congestion and improve flow delivery by determining how to prioritize XR data.
 
 
 
@@ -537,12 +539,12 @@ This RQ raises issues associated with synchronisation across multiple media stre
 * RQ 3.3.7: If the execution of COIN Programs is offloaded to computational nodes outside of PNDs, e.g. for processing by GPUs, should this still be considered as COIN? Where is the boundary between COIN capabilities and explicit routing of flows to endsystems?
 
 
-### Requirements
-* Req 3.3.1: Users SHOULD be able to specify requirements on network and processing metrics (such as latency and throughput bounds).
+### Desirable Capabilities
+* Capability 3.3.1: Users should be able to specify requirements on network and processing metrics (such as latency and throughput bounds).
 
-* Req 3.3.2  The COIN System SHOULD be able to respect user-specified requirements and constraints when routing flows and selecting PNDs for executing (COIN) Programs.
+* Capability 3.3.2  The COIN System should be able to respect user-specified requirements and constraints when routing flows and selecting PNDs for executing (COIN) Programs.
 
-* Req 3.3.3: A COIN System SHOULD be able to synchronize flow treatment and processing across multiple related flows which may be on disjoint paths.
+* Capability 3.3.3: A COIN System should be able to synchronize flow treatment and processing across multiple related flows which may be on disjoint paths.
 
 
 # Supporting new COIN Systems {#newEnvironments}
@@ -610,7 +612,7 @@ Early approaches such as {{RUETH}} and {{VESTIN}} have already shown the general
     * How do the different control instances interact?
 
 
-###  Desirable capabilities
+### Desirable Capabilities
 
 * Capability 4.1.1: The interaction between the COIN execution environments and the global controller should be explicit.
 
@@ -760,7 +762,9 @@ Such solutions, however, require setting up an additional system and do not leve
 ### Description
 
 Delivery of content to end users often relies on Content Delivery Networks (CDNs).
-CDNs store said content closer to end users for latency-reduced delivery and they often utilize DNS-based indirection to serve the request on behalf of the origin server. 
+CDNs store said content closer to end users for latency-reduced delivery as well as to reduce load on origin servers. 
+For this, they often utilize DNS-based indirection to serve the request on behalf of the origin server.
+Both of these objectives are within scope to be addressed by COIN methods and solutions.
 
 ###  Characterization
 
@@ -776,47 +780,52 @@ The replication architecture and mechanisms itself differs from one (CDN) provid
 
 Studies such as those in {{FCDN}} have shown that content distribution at the level of named content, utilizing efficient (e.g., Layer 2) multicast for replication towards edge CDN nodes, can significantly increase the overall network and server efficiency. 
 It also reduces indirection latency for content retrieval as well as required edge storage capacity by benefiting from the increased network efficiency to renew edge content more quickly against changing demand.
+Works such as those in {{SILKROAD}} utilize ASICs to replace server-based load balancing with significant cost reductions, thus showcasing the potential for in-network CN operations.
 
 ###  Opportunities
 
-   * Supporting service-level routing of requests (service routing in {{APPCENTRES}}) to specific (COIN) program instances may improve on end user experience in faster retrieving (possibly also more, e.g., better quality) content.
+   * Supporting service-level routing of requests (service routing in {{APPCENTRES}}) to specific (COIN) program instances may improve on end user experience in faster retrieving (possibly also more, e.g., better quality) content. 
 
-   * Supporting the constraint-based selection of a specific (COIN) program instance over others (constraint-based routing in {{APPCENTRES}}) may improve the overall end user experience by selecting a 'more suitable' (COIN) program instance over another, e.g., avoiding/reducing overload situations in specific (COIN) program instances. 
+   * COIN instances may also be utilized to integrate service-related telemetry information to support the selection of the final service instance destination from a pool of possible choices
 
-   * Supporting Layer 2 capabilities for multicast (compute interconnection and collective communication in {{APPCENTRES}}) may increase the network utilization and therefore increase the overall system utilization.
+   * Supporting the selection of a service destination from a set of possible (e.g., virtualized, distributed) choices, e.g., through constraint-based routing decisions (see {{APPCENTRES}}) in (COIN) program instances to improve the overall end user experience by selecting a 'more suitable' service destination over another, e.g., avoiding/reducing overload situations in specific service destinations.
+
+   * Supporting Layer 2 capabilities for multicast (compute interconnection and collective communication in {{APPCENTRES}}), e.g., through in-network/switch-based replication decisions (and their optimizations) based on dynamic group membership information, may reduce the network utilization and therefore increase the overall system efficiency.
 
 
 ### Research Questions
 In addition to the research questions in {{mobileOffloadRQ}}:
 
-   * RQ 5.1.1: How to utilize L2 multicast to improve on CDN designs? How to utilize COIN capabilities in those designs?
+   * RQ 5.1.1: How to utilize L2 multicast to improve on CDN designs? How to utilize COIN capabilities in those designs, such as through on-path optimizations for fanouts?
 
-   * RQ 5.1.2: What forwarding methods may support the required multicast capabilities (see {{FCDN}})?
+   * RQ 5.1.2: What forwarding methods may support the required multicast capabilities (see {{FCDN}}) and how could programmable COIN forwarding elements support those methods (e.g., extending current SDN capabilities)?
    
-   * RQ 5.1.3: What are the right routing constraints that reflect both compute and network capabilities?
+   * RQ 5.1.3: What are the constraints, reflecting both compute and network capabilities, that may support joint optimization of routing and computing? How could intermediary (COIN) program instances support, e.g., the aggregation of those constraints to reduce overall telemetry network traffic?
    
-   * RQ 5.1.4: Could traffic steering be performed on the data path and per service request? If so, what would be performance improvements? 
+   * RQ 5.1.4: Could traffic steering be performed on the data path and per service request, e.g., through (COIN) program instances that perform novel routing request lookup methods? If so, what would be performance improvements? 
 
-   * RQ 5.1.5: How could storage be traded off against frequent, multicast-based replication (see {{FCDN}})?
+   * RQ 5.1.5: How could storage be traded off against frequent, multicast-based replication (see {{FCDN}})? Could intermediary/in-network (COIN) elements support the storage beyond current endpoint-based methods?
 
-   * RQ 5.1.6: What scalability limits exist for L2 multicast capabilities? How to overcome them? 
+   * RQ 5.1.6: What scalability limits exist for L2 multicast capabilities? How to overcome them, e.g., through (COIN) program instances serving as stateful subtree aggregators to reduce the needed identifier space for, e.g., bit-based forwarding? 
 
 
 
-###  Requirements
+### Desirable Capabilities
 
-Requirements 3.1.1 through 3.1.6 also apply for CDN service access. 
+Capabilities 3.1.1 through 3.1.6 also apply for CDN service access. 
 In addition:
 
-* Req 5.1.1: Any solution SHOULD utilize Layer 2 multicast transmission capabilities for responses to concurrent service requests. 
+* Capability 5.1.1: Any solution should utilize Layer 2 multicast transmission capabilities for responses to concurrent service requests. 
 
 ## Compute-Fabric-as-a-Service (CFaaS) {#CFaaS}
 
 ### Description
 
-Layer 2 connected compute resources, e.g., in regional or edge data centers, base stations, and even end user devices, provide the opportunity for infrastructure providers to offer CFaaS-like offerings to application providers. 
-App and service providers may utilize the compute fabric exposed by this CFaaS offering for the purposes defined through their applications and services. 
-In other words, the compute resources can be utilized to execute the desired (COIN) programs of which the application is composed, while utilizing the interconnection between those compute resources to do so in a distributed manner. 
+We interpret connected compute resources as operating at a suitable layer, such as Ethernet, InfiBand but also at Layer 3, to allow for the exchange of suitable invocation methods, such as exposed through verb-based or socket-based APIs. 
+The specific invocations here are subject to the applications running over a selected pool of such connected compute resources.
+
+Providing such pool of connected compute resources, e.g., in regional or edge data centers, base stations, and even end user devices, opens up the opportunity for infrastructure providers to offer CFaaS-like offerings to application providers, leaving the choice of the appropriate invocation method to the app and service provider. 
+Through this, the compute resources can be utilized to execute the desired (COIN) programs of which the application is composed, while utilizing the interconnection between those compute resources to do so in a distributed manner. 
 
 ###  Characterization
 
@@ -830,8 +839,8 @@ This also requires the communication resources to be dynamically adjusted to sui
 
 ###  Existing Solutions
 
-There exist a number of technologies to build non-local (wide area) Layer 2 networks, which in turn allows for connecting compute resources for a distributed computational task. 
-5G-LAN {{SA2-5GLAN}} specifies a cellular L2 bearer for interconnecting L2 resources within a single cellular operator. 
+There exist a number of technologies to build non-local (wide area) Layer 2 as well as Layer 3 networks, which in turn allows for connecting compute resources for a distributed computational task. 
+For instance, 5G-LAN {{SA2-5GLAN}} specifies a cellular L2 bearer for interconnecting L2 resources within a single cellular operator. 
 The work in {{ICN5GLAN}} outlines using a path-based forwarding solution over 5G-LAN as well as SDN-based LAN connectivity together with an ICN-based naming of IP and HTTP-level resources to achieve computational interconnections, including scenarios such as those outlined in {{mobileAppOffload}}.
 L2 network virtualization (see, e.g., {{L2Virt}}) is one of the methods used for realizing so-called 'cloud-native' applications for applications developed with 'physical' networks in mind, thus forming an interconnected compute and storage fabric.  
 
@@ -842,29 +851,32 @@ L2 network virtualization (see, e.g., {{L2Virt}}) is one of the methods used for
 
    * Supporting the constraint-based selection of a specific (COIN) program instance over others (constraint-based routing in {{APPCENTRES}}) will allow for optimizing both the CFaaS provider constraints as well as tenant-specific constraints.
 
-   * Supporting Layer 2 capabilities for multicast (compute interconnection and collective communication in {{APPCENTRES}}) will allow for increasing both network utilization but also possible compute utilization (due to avoiding unicast replication at those compute endpoints), thereby decreasing total cost of ownership for the CFaaS offering. 
+   * Supporting Layer 2 and 3 capabilities for multicast (compute interconnection and collective communication in {{APPCENTRES}}) will allow for decreasing both network utilization but also possible compute utilization (due to avoiding unicast replication at those compute endpoints), thereby decreasing total cost of ownership for the CFaaS offering. 
+
+   * Supporting the enforcement of trust relationships and isolation policies through intermediary (COIN) program instances, e.g., enforcing specific traffic shares or strict isolation of traffic through differentiated queueing.
 
 
 ### Research Questions
 In addition to the research questions in {{mobileOffloadRQ}}:
 
-   * RQ 5.2.1: How to convey tenant-specific requirements for the creation of the L2 fabric?
+   * RQ 5.2.1: How to convey tenant-specific requirements for the creation of the CFaaS fabric?
    * RQ 5.2.2: How to dynamically integrate resources, particularly when driven by tenant-level requirements and changing service-specific constraints? 
    * RQ 5.2.3: How to utilize COIN capabilities to aid the availability and accountability of resources, i.e., what may be (COIN) programs for a CFaaS environment that in turn would utilize the distributed execution capability of a COIN system?
+   * RQ 5.2.4: How to utilize COIN capabilities to enforce traffic and isolation policies for establishing trust between tenant and CFaaS provider in an assured operation?
 
 
-### Requirements
+### Desirable Capabilities
 
-Requirements 3.1.1 through 3.1.6 also apply for the provisioning of services atop the CFaaS.
+Capabilities 3.1.1 through 3.1.6 also apply for the provisioning of services atop the CFaaS.
 In addition:
 
-   * Req 5.2.1: Any solution SHOULD expose means to specify the requirements for the tenant-specific compute fabric being utilized for the service execution.
+   * Capability 5.2.1: Any solution should expose means to specify the requirements for the tenant-specific compute fabric being utilized for the service execution.
 
-   * Req 5.2.2: Any solution SHOULD allow for dynamic integration of compute resources into the compute fabric being utilized for the app execution; those resources include, but are not limited to, end user provided resources. From a COIN system perspective, new resources must be possible to be exposed as possible (COIN) execution environments.
+   * Capability 5.2.2: Any solution should allow for dynamic integration of compute resources into the compute fabric being utilized for the app execution; those resources include, but are not limited to, end user provided resources. From a COIN system perspective, new resources must be possible to be exposed as possible (COIN) execution environments.
 
-   * Req 5.2.3: Any solution MUST provide means to optimize the interconnection of compute resources, including those dynamically added and removed during the provisioning of the tenant-specific compute fabric. 
+   * Capability 5.2.3: Any solution must provide means to optimize the interconnection of compute resources, including those dynamically added and removed during the provisioning of the tenant-specific compute fabric. 
 
-   * Req 5.2.4: Any solution MUST provide means for ensuring that availability and usage of resources is accounted for.
+   * Capability 5.2.4: Any solution must provide means for ensuring that availability and usage of resources is accounted for.
 
 
 
@@ -959,21 +971,21 @@ For example, 5G network evolution points to an ever increasing specialization an
 
 * RQ 5.3.5: Higher layer processing: can a virtual network model facilitate the deployment of COIN programs acting on application layer data? This is an open question since the present section focused on packet/flow processing.
 
-###  Requirements
+### Desirable Capabilities
 
-* Req 5.3.1: A COIN system supporting virtualization SHOULD enable tenants to deploy COIN programs onto their virtual networks. 
-* Req 5.3.2: A virtual COIN program SHOULD process flows/packets once and only once (or at least once for idempotent operations), even if the program is distributed over multiple PNDs. 
-* Req 5.3.3: Multi-tenancy SHOULD be supported for virtual COIN programs, i.e., instances of virtual COIN programs from different tenants can share underlying PNDs. This includes requirements for secure isolation between tenants, and fair (or policy-based) sharing of computing resources. 
-* Req 5.3.4: Virtual COIN programs SHOULD support mobility of endpoints.
+* Capability 5.3.1: A COIN system supporting virtualization should enable tenants to deploy COIN programs onto their virtual networks. 
+* Capability 5.3.2: A virtual COIN program should process flows/packets once and only once (or at least once for idempotent operations), even if the program is distributed over multiple PNDs. 
+* Capability 5.3.3: Multi-tenancy should be supported for virtual COIN programs, i.e., instances of virtual COIN programs from different tenants can share underlying PNDs. This includes requirements for secure isolation between tenants, and fair (or policy-based) sharing of computing resources. 
+* Capability 5.3.4: Virtual COIN programs should support mobility of endpoints.
 
 
 # Enabling new COIN capabilities {#newCapabilities}
 
-## Distributed AI {#distributedAI}
+## Distributed AI Training {#distributedAI}
 
 ### Description
 
-There is a growing range of use cases demanding for the realization of AI capabilities among distributed endpoints.
+There is a growing range of use cases demanding for the realization of AI training capabilities among distributed endpoints.
 Such demand may be driven by the need to increase overall computational power for large-scale problems.
 From a COIN perspective, those capabilities may be realized as (COIN) programs and executed throughout the COIN system, including in PNDs.
    
@@ -982,38 +994,39 @@ Quickly establishing (COIN) program instances in nearby compute resources, inclu
 
 ###  Characterization
 
-Examples for large-scale AI problems include biotechnology and astronomy related reasoning over massive amounts of observational input data.
-Examples for localizing input data for privacy reasons include radar-like application for the development of topological mapping data based on (distributed) radio measurements at base stations (and possibly end devices), while the processing within radio access networks (RAN) already constitutes a distributed AI problem to a certain extent albeit with little flexibility in distributing the execution of the AI logic.
+Examples for large-scale AI training problems include biotechnology and astronomy related reasoning over massive amounts of observational input data.
+Examples for localizing input data for privacy reasons include radar-like applications for the development of topological mapping data based on (distributed) radio measurements at base stations (and possibly end devices), while the processing within radio access networks (RAN) already constitutes a distributed AI training problem to a certain extent albeit with little flexibility in distributing the execution of the AI logic. Other examples include the extraction of key patient features from local private patient data, e.g., held at organizationally separate health trusts. 
 
 ###  Existing Solutions
 
-Reasoning frameworks, such as TensorFlow, may be utilized for the realization of the (distributed) AI logic, building on remote service invocation through protocols such as gRPC {{GRPC}} or MPI {{MPI}} with the intention of providing an on-chip NPU (neural processor unit) like abstraction to the AI framework.
+Reasoning frameworks, such as TensorFlow, may be utilized for the realization of the (distributed) AI training logic, building on remote service invocation through protocols such as gRPC {{GRPC}} or MPI {{MPI}} with the intention of providing an on-chip NPU (neural processor unit) like abstraction to the AI framework.
 
-A number of activities on distributed AI exist in the area of developing the 5th and 6th generation mobile network with various activities in the 3GPP SDO as well as use cases developed for the ETSI MEC initiative mentioned in previous use cases.
+A number of activities on distributed AI training exist in the area of developing the 5th and 6th generation mobile network with various activities in the 3GPP SDO as well as use cases developed for the ETSI MEC initiative mentioned in previous use cases.
 
 ###  Opportunities 
 
-   * Supporting service-level routing of requests (service routing in {{APPCENTRES}}), with AI services being exposed to the network and executed as part of (COIN) programs in selected (COIN) program instances, may provide a highly distributed execution of the overall AI logic, thereby addressing, e.g., localization but also computational concerns (scale-in/out).
-   * The support for constraint-based selection of a specific (COIN) program instance over others (constraint-based routing in {{APPCENTRES}}) may allow for utilizing the most suitable HW capabilities (e.g., support for specific AI HW assistance in the COIN element, including a PND), while also allowing to select resources, e.g., based on available compute ability such as number of cores to be used.
+   * Supporting service-level routing of training requests (service routing in {{APPCENTRES}}), with AI services being exposed to the network, where (COIN) program instances may support the selection of the most suitable service instance based on control plane information, e.g., on AI worker compute capabilities, being distributed across (COIN) program instances.
+   * Supporting the collective communication primitives, such as all-to-all, scatter-gather, utilized by the (distributed) AI workers to increase the overall network efficiency, e.g., through avoiding endpoint-based replication or even directly performing, e.g., reduce,
+    collective primitive operations in (COIN) program instances placed in topologically advantageous places.
    * Supporting collective communication between multiple instances of AI services, i.e., (COIN) program instances, may  positively impact network but also compute utilization by moving from unicast replication to network-assisted multicast operation.
 
 ### Research Questions
 In addition to the research questions in {{mobileOffloadRQ}}:
 
-   * RQ 6.1.1: What are the communication patterns that may be supported by collective communication solutions?
-   * RQ 6.1.2: How to achieve scalable multicast delivery with rapidly changing receiver sets?
+   * RQ 6.1.1: What are the communication patterns that may be supported by collective communication solutions, where those solutions directly utilize (COIN) program instance capabilities within the network (e.g., reduce in a central (COIN) program instance)?
+   * RQ 6.1.2: How to achieve scalable multicast delivery for collective communication primitives with rapidly changing receiver sets, e.g., where training workers may be dynamically selected based on energy efficiency constraints {{GREENAI}}?
    * RQ 6.1.3: What COIN capabilities may support the collective communication patterns found in distributed AI problems?
-   * RQ 6.1.4: How to provide a service routing capability that supports any invocation protocol (beyond HTTP)?
+   * RQ 6.1.4: How to provide a service routing capability that supports AI-specific invocation protocols, such as MPI or RDMA?
 
 
-###  Requirements
+### Desirable Capabilities
 
-Requirements 3.1.1 through 3.1.6 also apply for general distributed AI capabilities. 
+Capabilities 3.1.1 through 3.1.6 also apply for general distributed AI capabilities. 
 In addition:
 
-   * Req 6.1.1: Any COIN system MUST provide means to specify the constraints for placing (AI) execution logic in the form of (COIN) programs in certain logical execution points (and their associated physical locations), including PNDs.
+   * Capability 6.1.1: Any COIN system must provide means to specify the constraints for placing (AI) execution logic in the form of (COIN) programs in certain logical execution points (and their associated physical locations), including PNDs.
 
-   * Req 6.1.2: Any COIN system MUST provide support for app/micro-service specific invocation protocols for requesting (COIN) program services exposed to the COIN system.
+   * Capability 6.1.2: Any COIN system must provide support for app/micro-service specific invocation protocols for requesting (COIN) program services exposed to the COIN system.
 
 
 # Security Considerations {#sec_considerations}
