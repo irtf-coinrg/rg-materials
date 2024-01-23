@@ -199,8 +199,9 @@ informative:
   KUNZE-SIGNAL: DOI.10.1109/ISIE45552.2021.9576221
   SILKROAD: DOI.10.1145/3098822.3098824
   GREENAI: DOI.10.1109/PIMRC56721.2023.10293863
-
-
+  TLSSURVEY: DOI.10.1145/3580522
+  MADTLS: DOI.10.48550/arXiv.2312.09650
+  SPLITTLS: DOI.10.1145/2829988.2787482
 
 
 
@@ -479,14 +480,15 @@ While delay is inherently related to information transmission and if we continue
 ## Personalized and interactive performing arts {#PerformingArts}
 
 ### Description
-This use case covers live productions of the performing arts where the performers and audience are in different physical locations. 
-The performance is conveyed to the audience through multiple networked streams which may be tailored to the requirements of individual audience members; and the performers receive live feedback from the audience.
+This use case is a deeper dive into a specific scenario of the immersive and extended reality class of use cases discussed in {{XR}}. 
+It focuses on live productions of the performing arts where the performers and audience members are geographically distributed. 
+The performance is conveyed through multiple networked streams which are tailored to the requirements of the remote performers, the director, sound and lighting technicians, and individual audience members; performers need to observe, interact and synchronize with other performers in remote locations; and the performers receive live feedback from the audience, which may also be conveyed to other audience members.
 
-There are two main aspects: i) to emulate as closely as possible the experience of live performances where the performers and audience are co-located in the same physical space, such as a theater; and ii) to enhance traditional physical performances with features such as personalization of the experience according to the preferences or needs of the audience members.
+There are two main aspects: i) to emulate as closely as possible the experience of live performances where the performers, audience, director, and technicians are co-located in the same physical space, such as a theater; and ii) to enhance traditional physical performances with features such as personalization of the experience according to the preferences or needs of the performers, directors, and audience members.
 
 Examples of personalization include:
 
-* Viewpoint selection such as choosing a specific seat in the theater or for more advanced positioning of the audience member's viewpoint outside of the traditional seating - amongst, above or behind the performers (but within some limits which may be imposed by the performers or the director for artistic reasons);
+* Viewpoint selection such as choosing a specific seat in the theater or for more advanced positioning of the audience member's viewpoint outside of the traditional seating - amongst, above, or behind the performers (but within some limits which may be imposed by the performers or the director, for artistic reasons);
 * Augmentation of the performance with subtitles, audio-description, actor-tagging, language translation, advertisements/product-placement, other enhancements/filters to make the performance accessible to disabled audience members (removal of flashing images for epileptics, alternative color schemes for color-blind audience members, etc.).
 
 
@@ -496,22 +498,22 @@ There are several chained functional entities which are candidates for being dep
 * Performer aggregation and editing functions
 * Distribution and encoding functions
 * Personalization functions
-    * to select which of the existing streams should be forwarded to the audience member
+    * to select which of the existing streams should be forwarded to the audience member, remote performer, or member of the production team
     * to augment streams with additional metadata such as subtitles
-    * to create new streams after processing existing ones, e.g., to interpolate between camera angles to create a new viewpoint or to render point clouds from the audience member's chosen perspective
+    * to create new streams after processing existing ones, e.g., to interpolate between camera angles to create a new viewpoint or to render point clouds from an audience member's chosen perspective
     * to undertake remote rendering according to viewer position, e.g., creation of VR headset display streams according to audience head position - when this processing has been offloaded from the viewer's end-system to the COIN function due to limited processing power in the end-system, or to limited network bandwidth to receive all of the individual streams to be processed.
 * Audience feedback sensor processing functions
 * Audience feedback aggregation functions
 
 These are candidates for deployment as (COIN) Programs in PNDs rather than being located in end-systems (at the performers' site, the audience members' premises or in a central cloud location) for several reasons:
 
-* Personalization of the performance according to audience preferences and requirements makes it unfeasible to be done in a centralized manner at the performer premises: the computational resources and network bandwidth would need to scale with the number of audience members’ personalized streams.
+* Personalization of the performance according to viewer preferences and requirements makes it infeasible to be done in a centralized manner at the performer premises: the computational resources and network bandwidth would need to scale with the number of personalized streams.
 * Rendering of VR headset content to follow viewer head movements has an upper bound on lag to maintain viewer QoE, which requires the processing to be undertaken sufficiently close to the viewer to avoid large network latencies.
-* Viewer devices may not have the processing-power to undertake the personalization or the viewers' network may not have the capacity to receive all of the constituent streams to undertake the personalization functions.
-* There are strict latency requirements for live and interactive aspects that require the deviation from the direct network path from performers to audience to be minimized, which reduces the opportunity to route streams via large-scale processing capabilities at centralized data-centers.
+* Viewer devices may not have the processing-power to perform the personalization tasks, or the viewers' network may not have the capacity to receive all of the constituent streams to undertake the personalization functions.
+* There are strict latency requirements for live and interactive aspects that require the deviation from the direct network path between performers and audience members to be minimized, which reduces the opportunity to route streams via large-scale processing capabilities at centralized data-centers.
 
 ### Existing solutions
-Note: Existing solutions for some aspects of this use case are covered in the Mobile Application Offloading, Extended Reality, and Content Delivery Networks use cases.
+Note: Existing solutions for some aspects of this use case are covered in {{mobileAppOffload}}, {{XR}}, and {{CDNs}}.
 
 
 ### Opportunities
@@ -522,9 +524,9 @@ For example, the overall delay for performance capture, aggregation, distributio
 
 ### Research Questions:
 
-* RQ 3.3.1: In which PNDs should (COIN) Programs for aggregation, encoding and personalization functions be located? Close to the performers or close to the audience members?
+* RQ 3.3.1: In which PNDs should (COIN) Programs for aggregation, encoding, and personalization functions be located? Close to the performers or close to the viewers?
 
-* RQ 3.3.2: How far from the direct network path from performer to audience should (COIN) programs be located, considering the latency implications of path-stretch and the availability of processing capacity at PNDs? How should tolerances be defined by users?
+* RQ 3.3.2: How far from the direct network path from performer to viewer should (COIN) programs be located, considering the latency implications of path-stretch and the availability of processing capacity at PNDs? How should tolerances be defined by users?
 
 * RQ 3.3.3: Should users decide which PNDs should be used for executing (COIN) Programs for their flows or should they express requirements and constraints that will direct decisions by the orchestrator/manager of the COIN System?
 
@@ -1031,11 +1033,30 @@ In addition:
 
 # Security Considerations {#sec_considerations}
 
-Deploying COIN solutions to the use cases described in this document may pose a risk for security breaches if the solutions are not deployed with security and authentication mechanisms in place.
-In particular, many early PND-based approaches work on unencrypted plain text data and often customize packet payload to account for missing capabilities of early-generation PNDs.
-Such need for operating on unencrypted data either limits the applicability of COIN solutions to those parts of the packet transfer that happens to be unencrypted or poses a strong requirement to user data to not being encrypted for the sake of utilizing COIN capabilities; a requirement hardly aligned with the strong trend to encrypting all user-related data in traversing packets.
-Thus, even without having analyzed the use cases in more detail in this document, designing meaningful solutions for providing authentication as well as incorporating the rightfully ongoing trend to more and more end-to-end encrypted traffic into COIN will be key.
+COIN systems, like any other system using ``middleboxes'', can have different security and privacy implications that strongly depend on the used platforms, the provided functionality, and the deployment domain, with most if not all considerations for general middleboxes also applying for COIN systems.
 
+One critical aspect for early COIN systems is the use of early-generation PNDs, many of which do not have cryptography support and only have limited computational capabilities.
+Hence, PND-based COIN systems typically work on unencrypted data and often customize packet payload.
+This introduces the same or very similar security implications as any middlebox operating on unencrypted traffic or having access to encryption: a middlebox can itself have malicious intentions, e.g., because it got compromised, or the deployment of functionality offers new attack vectors to outsiders. 
+
+However, similar to middlebox deployments, risks for privacy and of data exposure have to be carefully considered in the context of the concrete deployment.
+For example, exposing data to an external operator for mobile application offloading leads to a significant privacy loss of the user in any case.
+In contrast, such privacy considerations are not as relevant for COIN systems where all involved entities are under the same control, such as in an industrial context.
+Instead, exposed data and functionality can lead to stolen business secrets or the enabling of, e.g., DoS attacks.
+Hence, even in fully controlled scenarios, COIN intemediaries, and middleboxes in general, are ideally operated in a least-privilege mode, where they have exactly those permissions to read and alter payload that are necessary to fulfil their purpose.
+
+Research on granting middleboxes access to secured traffic is only in its infancy and a variety of different approaches are proposed and analyzed {{TLSSURVEY}}.
+In a SplitTLS {{SPLITTLS}} deployment, e.g., middleboxes have different incoming and outgoing TLS channels, such that they have full read and write access to all intercepted traffic. 
+More restrictive approaches for deploying middleboxes rely on searchable encryption or zero-knowledge proofs to expose less data to intermediaries, but those only offer limited functionality. 
+MADTLS{{MADTLS}} is tailored to the industrial domain and offers bit-level read and write access to intermediaries with low latency and bandwidth overhead, at the cost of more complex key management. 
+Overall, different proposals offer different advantages and disadvantages that must be carefully considered in the context of concrete deployments. 
+Further research could pave the way for a more unified and configurable solution that is easier to maintain and deploy. 
+
+Finally, COIN systems and other middlebox deployments can also lead to security risks even if the attack stems from an outsider without direct access to any devices. 
+As such, metadata about the entailed processing (processing times, changes in incoming and outgoing data) can allow an attacker to extract valuable information about the process. 
+Moreover, such deployments can become central entities that, if paralyzed (e.g., through extensive requests), can be responsible for large-scale outages. 
+In particular, some deployments could be used to amplify DoS attacks.
+Similar to other middlebox deployments, these potential risks must be considered when deploying COIN functionality and may influence the selection of suitable security protocols.
 
 
 # IANA Considerations
@@ -1058,5 +1079,6 @@ Through this, the use cases presented here together with the intended analysis p
 
 # Acknowledgements
 
-The authors would like to thank Chathura Sarathchandra for reviewing the document and David Oran, Phil Eardley, Stuart Card, Jeffrey He, Toerless Eckert, and Jon Crowcroft for providing comments on earlier versions of the document and during the research group last call.
+The authors would like to thank Eric Wagner for providing text on the security considerations.
+The authors would further like to thank Chathura Sarathchandra for reviewing the document and David Oran, Phil Eardley, Stuart Card, Jeffrey He, Toerless Eckert, and Jon Crowcroft for providing comments on earlier versions of the document and during the research group last call.
 
