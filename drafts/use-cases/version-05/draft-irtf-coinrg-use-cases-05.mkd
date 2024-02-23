@@ -269,9 +269,6 @@ This document represents the consensus of COINRG.
 
 This document uses the terminology outlined in {{TERMINOLOGY}}.
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{!RFC2119}} {{!RFC8174}} when, and only when, they appear in all capitals, as shown here.
-
-
 # Providing New COIN Experiences {#newExperiences}
 
 ## Mobile Application Offloading {#mobileAppOffload}
@@ -1114,5 +1111,5 @@ Through this, the use cases presented here together with the intended analysis p
 # Acknowledgements
 
 The authors would like to thank Eric Wagner for providing text on the security considerations.
-The authors would further like to thank Chathura Sarathchandra for reviewing the document and David Oran, Phil Eardley, Stuart Card, Jeffrey He, Toerless Eckert, and Jon Crowcroft for providing comments on earlier versions of the document and during the research group last call.
+The authors would further like to thank Chathura Sarathchandra, David Oran, Phil Eardley, Stuart Card, Jeffrey He, Toerless Eckert, and Jon Crowcroft for reviewing the document and providing comments on earlier versions of the document and during the research group last call.
 
