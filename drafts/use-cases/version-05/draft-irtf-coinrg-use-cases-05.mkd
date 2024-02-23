@@ -183,6 +183,12 @@ informative:
     - name: ETSI
     date: '2022'
     target: 'https://www.etsi.org/technologies/multi-access-edge-computing'
+  Microservices:
+    title: What are microservices?
+    author:
+    - ins: C. Richardson
+    date: '2024'
+    target: 'https://microservices.io/'
   GSLB:
     title: 'What is global server load balancing (GSLB)?'
     author:
@@ -197,6 +203,8 @@ informative:
     target: 'https://blogs.oracle.com/cloud-infrastructure/post/first-principles-l2-network-virtualization-for-lift-and-shift'
   KUNZE-APPLICABILITY: DOI.10.1109/ICPS49255.2021.9468247
   KUNZE-SIGNAL: DOI.10.1109/ISIE45552.2021.9576221
+  SarNet2021: DOI.10.1109/HPSR52026.2021.9481814
+  Multi2020: DOI.10.1145/3387514.3405864
   SILKROAD: DOI.10.1145/3098822.3098824
   GREENAI: DOI.10.1109/PIMRC56721.2023.10293863
   TLSSURVEY: DOI.10.1145/3580522
@@ -271,14 +279,15 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 ### Description
 
 This scenario can be exemplified in an immersive gaming application, where a single user plays a game using a Virtual Reality (VR) headset.   
-The headset hosts functions that "display" frames to the user, as well as the functions for VR content processing and frame rendering that also incorporate input data received from sensors in the VR headset. 
+The headset hosts several (COIN) programs. 
+For instance, the "display" (COIN) program renders frames to the user, while other programs are realized for VR content processing and to incorporate input data received from sensors, e.g., in bodily worn devices including the VR headset.
    
-Once this application is partitioned into constituent (COIN) programs and deployed throughout a COIN system, utilizing the COIN execution environment, only the "display" (COIN) program may be left in the headset, while the compute intensive real-time VR content processing (COIN) program can be offloaded to a nearby resource rich home PC or a programmable network device (PND, see {{TERMINOLOGY}}) in the operator's access network, for a better execution (faster and possibly higher resolution generation).
+Once this application is partitioned into its constituent (COIN) programs and deployed throughout a COIN system, utilizing the COIN execution environment, only the "display" (COIN) program may be left in the headset, while the compute intensive real-time VR content processing (COIN) program can be offloaded to a nearby resource rich home PC or a programmable network device (PND, see {{TERMINOLOGY}}) in the operator's access network, for a better execution (faster and possibly higher resolution generation).
 
 ### Characterization
 
-Partitioning a mobile application into several constituent (COIN) programs allows for denoting the application as a collection of (COIN) functions for a flexible composition and a distributed execution. 
-In our example above, most functions of a mobile application can be categorized into any of three, "receiving", "processing", and "displaying" function groups.
+Partitioning a mobile application into several constituent (COIN) programs allows for denoting the application as a collection of (COIN) programs for a flexible composition and a distributed execution. 
+In our example above, most capabilities of a mobile application can be categorized into any of three, "receiving", "processing", and "displaying" groups.
 
 Any device may realize one or more of the (COIN) programs of a mobile application and expose them to the (COIN) system and its constituent (COIN) execution environments. 
 When the (COIN) program sequence is executed on a single device, the outcome is what you see today as applications running on mobile devices.
@@ -286,7 +295,7 @@ When the (COIN) program sequence is executed on a single device, the outcome is 
 However, the execution of a (COIN) program may be moved to other (e.g., more suitable) devices, including PNDs, which have exposed the corresponding (COIN) program as individual (COIN) program instances to the (COIN) system by means of a 'service identifier'. 
 The result is the equivalent to 'mobile function offloading', for possible reduction of power consumption (e.g., offloading CPU intensive process functions to a remote server) or for improved end user experience (e.g., moving display functions to a nearby smart TV) by selecting more suitably placed (COIN) program instances in the overall (COIN) system. 
 
-{{figureAppOffload}} shows one realization of the above scenario, where a 'DPR app' is running on a mobile device (containing the partitioned Display(D), Process(P) and Receive(R) COIN programs) over an SDN network. 
+{{figureAppOffload}} shows one realization of the above scenario, where a 'DPR app' is running on a mobile device (containing the partitioned Display(D), Process(P) and Receive(R) COIN programs) over a programmable switching, e.g., here an SDN, network. 
 The packaged applications are made available through a localized 'playstore server'. 
 The mobile application installation is realized as a 'service deployment' process, combining the local app installation with a distributed deployment (and orchestration) of one or more (COIN) programs on most suitable end systems or PNDs ('processing server').
 
@@ -328,14 +337,16 @@ Such localized deployment could, for instance, be provided by a visiting site, s
 Once the 'processing' (COIN) program is terminated on the mobile device, the 'service routing' (SR) elements in the network route (service) requests instead to the (previously deployed) 'processing' (COIN) program running on the processing server over an existing SDN network. 
 Here, capabilities and other constraints for selecting the appropriate (COIN) program, in case of having deployed more than one, may be provided both in the advertisement of the (COIN) program and the service request itself. 
    
-As an extension to the above scenarios, we can also envision that content from one processing (COIN) program may be distributed to more than one display (COIN) program, e.g., for multi/many-viewing scenarios, thereby realizing a service-level multicast capability towards more than one (COIN) program.
+As an extension to the above scenarios, we can also envision that content from one processing (COIN) program may be distributed to more than one display (COIN) program, e.g., for multi/many-viewing scenarios.
+Here, an offloaded "processing" program may collate input from several users in the (virtual) environment to generate a possibly three-dimensional render that is then distributed via a service-level multicast capability towards more than one "display" (COIN) program.
 
 ### Existing Solutions
 
 The ETSI Mobile Edge Computing (MEC) {{ETSI}} suite of technologies provides solutions for mobile function offloading by allowing mobile applications to select resources in edge devices to execute functions instead of the mobile device directly. 
 For this, ETSI MEC utilizes a set of interfaces for the selection of suitable edge resources, connecting to so-called MEC application servers, while also allowing for sending data for function execution to the application server. 
 
-However, the technologies do not utilize micro-services as described in our use case and also do not allow for the dynamic selection and redirection of micro-service calls to varying edge resources rather than a single MEC application server. 
+However, the technologies do not utilize micro-services {{Microservices}} but mainly rely on virtualization approaches such as containers or virtual machines, thus requiring a heavier processing and memory footprint in the COIN execution environment and the executing intermediaries. 
+Also, the ETSI work does not allow for the dynamic selection and redirection of (COIN) program calls to varying edge resources rather than a single MEC application server.
 
 Also, the selection of the edge resource (the app server) is relatively static, relying on DNS-based endpoint selection, which does not cater to the requirements of the example provided above, where the latency for redirecting to another device lies within few milliseconds for aligning with the framerate of the display micro-service. 
 
@@ -353,13 +364,14 @@ This capability, together with the underlying path-based forwarding capability (
    
    * The orchestration for deploying (COIN) program instances in specific end systems and PNDs alike may open up the possibility for localized infrastructure owners, such as hotels or venue owners, to offer their compute capabilities to their visitors for improved or even site-specific experiences. 
    
-   * The execution of (current mobile) app-level (COIN) programs may speed up the execution of said (COIN) program by relocating the execution to more suitable devices, including PNDs.
+   * The execution of (current mobile) app-level (COIN) programs may speed up the execution of said (COIN) program by relocating the execution to more suitable devices, including PNDs that may reside better located in relation to other (COIN) programs and thus improve performance, such as latency.
 
-   * The support for service-level routing of requests (service routing in {{APPCENTRES}} may support higher flexibility when switching from one (COIN) program instance to another, e.g., due to changing constraints for selecting the new (COIN) program instance. 
+   * The support for service-level routing of requests (service routing in {{APPCENTRES}} may support higher flexibility when switching from one (COIN) program instance to another, e.g., due to changing constraints for selecting the new (COIN) program instance.
+   Here, PNDs may support service routing solutions by acting as routing overlay nodes to implement the necessary additional lookup functionality and also possibly support the handling of affinity relations, i.e., the forwarding of one packet to the destination of a previous one due to a higher level service relation, as discussed and described in {{SarNet2021}}.
   
    * The ability to identify service-level COIN elements will allow for routing service requests to those COIN elements, including PNDs, therefore possibly allowing for new COIN functionality to be included in the mobile application. 
 
-   * The support for constraint-based selection of a specific (COIN) program instance over others (constraint-based routing in {{APPCENTRES}}) may allow for a more flexible and app-specific selection of (COIN) program instances, thereby allowing for better meeting the app-specific and end user requirements.
+   * The support for constraint-based selection of a specific (COIN) program instance over others (constraint-based routing in {{APPCENTRES}}, showcased for PNDs in {{SarNet2021}}) may allow for a more flexible and app-specific selection of (COIN) program instances, thereby allowing for better meeting the app-specific and end user requirements.
 
 ### Research Questions {#mobileOffloadRQ}
 
@@ -369,7 +381,7 @@ This capability, together with the underlying path-based forwarding capability (
    * RQ 3.1.4: How to identify (COIN) programs and program instances? 
    * RQ 3.1.5: How to identify a specific choice of (COIN) program instances over others?
    * RQ 3.1.6: How to provide affinity of service requests towards (COIN) program instances, i.e., longer-term transactions with ephemeral state established at a specific (COIN) program instance?
-   * RQ 3.1.7: How to provide constraint-based routing decisions at packet forwarding speed?
+   * RQ 3.1.7: How to provide constraint-based routing decisions that can be realized at packet forwarding speed, e.g., using techniques explored in {{SarNet2021}} at the forwarding plane or using approaches like {{Multi2020}} for extended routing protocols?
    * RQ 3.1.8: What COIN capabilities may support the execution of (COIN) programs and their instances?
 
 
@@ -401,7 +413,7 @@ This capability, together with the underlying path-based forwarding capability (
 
 ### Description
 
-Extended reality (XR) encompasses Virtual Reality (VR), Augmented Reality (AR) and Mixed Reality (MR). 
+Extended reality (XR) encompasses VR, Augmented Reality (AR) and Mixed Reality (MR). 
 It provides the basis for the metaverse and is the driver of a number of advances in interactive technologies. 
 While initially associated with gaming and immersive entertainment, applications now include remote diagnosis, maintenance, telemedicine, manufacturing and assembly, intelligent agriculture, smart cities, and immersive classrooms.
 XR is one example of the multisource-multidestination problem that combines video and haptics in interactive multi-party interactions under strict delay requirements that can benefit from a functional distribution that includes fog computing for local information processing, the edge for aggregation, and the cloud for image processing.
@@ -688,10 +700,12 @@ Using expert knowledge about the exact computation steps and the concrete transm
 ### Existing Solutions {#FilteringSol}
 
 Current approaches for handling such large amounts of information typically build upon stream processing frameworks such as Apache Flink.
-While they allow for handling large volume applications, they are tied to performant server machines and upscaling the information density also requires a corresponding upscaling of the compute infrastructure.
-
+These solutions allow for handling large volume applications and map the compute functionality to performant server machines or distributed compute platforms.
+Augmenting the existing capabilities, COIN offers a new dimension of platforms for such processing frameworks.
 
 ### Opportunities {#FilteringOppo}
+
+* (Stream) processing frameworks can become more flexible by introducing COIN execution environments as additional deployment targets.
 
 * (Semantic) packet filtering based on packet header and payload, as well as multi-packet information can (drastically) reduce the data volume, possibly even without losing any important information.
 
@@ -699,6 +713,8 @@ While they allow for handling large volume applications, they are tied to perfor
 
 
 ### Research Questions {#FilteringRQ}
+
+Some of the following research questions are also relevant in the context of general stream processing systems.
 
 * RQ 4.2.1: How can the overall data processing pipeline be divided into individual processing steps that could then be deployed as COIN functionality?
 * RQ 4.2.2: How to design COIN programs for (semantic) packet filtering?
@@ -1054,14 +1070,14 @@ In addition:
 COIN systems, like any other system using ``middleboxes'', can have different security and privacy implications that strongly depend on the used platforms, the provided functionality, and the deployment domain, with most if not all considerations for general middleboxes also applying for COIN systems.
 
 One critical aspect for early COIN systems is the use of early-generation PNDs, many of which do not have cryptography support and only have limited computational capabilities.
-Hence, PND-based COIN systems typically work on unencrypted data and often customize packet payload.
-This introduces the same or very similar security implications as any middlebox operating on unencrypted traffic or having access to encryption: a middlebox can itself have malicious intentions, e.g., because it got compromised, or the deployment of functionality offers new attack vectors to outsiders. 
+Hence, PND-based COIN systems typically work on unencrypted data and often customize packet payload while concepts, such as homomorphic encryption, could serve as workarounds, allowing PNDs to perform simple operations on the encrypted data without having access to it.
+All these approaches introduce the same or very similar security implications as any middlebox operating on unencrypted traffic or having access to encryption: a middlebox can itself have malicious intentions, e.g., because it got compromised, or the deployment of functionality offers new attack vectors to outsiders. 
 
 However, similar to middlebox deployments, risks for privacy and of data exposure have to be carefully considered in the context of the concrete deployment.
 For example, exposing data to an external operator for mobile application offloading leads to a significant privacy loss of the user in any case.
 In contrast, such privacy considerations are not as relevant for COIN systems where all involved entities are under the same control, such as in an industrial context.
-Instead, exposed data and functionality can lead to stolen business secrets or the enabling of, e.g., DoS attacks.
-Hence, even in fully controlled scenarios, COIN intemediaries, and middleboxes in general, are ideally operated in a least-privilege mode, where they have exactly those permissions to read and alter payload that are necessary to fulfil their purpose.
+Here, exposed data and functionality can instead lead to stolen business secrets or the enabling of, e.g., DoS attacks.
+Hence, even in fully controlled scenarios, COIN intermediaries, and middleboxes in general, are ideally operated in a least-privilege mode, where they have exactly those permissions to read and alter payload that are necessary to fulfil their purpose.
 
 Research on granting middleboxes access to secured traffic is only in its infancy and a variety of different approaches are proposed and analyzed {{TLSSURVEY}}.
 In a SplitTLS {{SPLITTLS}} deployment, e.g., middleboxes have different incoming and outgoing TLS channels, such that they have full read and write access to all intercepted traffic. 
