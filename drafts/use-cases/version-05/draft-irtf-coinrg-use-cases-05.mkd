@@ -1111,5 +1111,4 @@ Through this, the use cases presented here together with the intended analysis p
 # Acknowledgements
 
 The authors would like to thank Eric Wagner for providing text on the security considerations.
-The authors would further like to thank Chathura Sarathchandra, David Oran, Phil Eardley, Stuart Card, Jeffrey He, Toerless Eckert, and Jon Crowcroft for reviewing the document and providing comments on earlier versions of the document and during the research group last call.
-
+The authors would further like to thank Chathura Sarathchandra, David Oran, Phil Eardley, Stuart Card, Jeffrey He, Toerless Eckert, and Jon Crowcroft for reviewing the document.
